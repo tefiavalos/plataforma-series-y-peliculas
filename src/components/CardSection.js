@@ -1,37 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import { ArrowIcon } from '@styled-icons/feather/ArrowRight';
+import Card from './Card'
 
-const CardStyled = styled.div`
+const CardSectionStyled = styled.section`
+width: 100%;
 display: flex;
-width: 300px;
-height: auto;
-color: white;
-background-color: black`
+flex-wrap: wrap;
+justify-content: space-around;
+background-color: #141414;
+`
 
 
-
-const CardSection = ({ info, title }) => {
+const CardSection = ({ info }) => {
     return (
-<>
-        <p>{ title }</p>
-        
-        <div>
-            {
-        info.map((element) => {
-
-            return (
-                <>
-                <p>title={element.title} </p>
-                <img src={`https://image.tmdb.org/t/p/w500${element.poster_path}`}></img> 
-                </>                
-                    )
-        })
-        }
-        </div>
-</>
+        <CardSectionStyled>
+            <Card info={info}></Card>
+        </CardSectionStyled>
     )
 }
 
-export default CardSection;
+export default CardSection

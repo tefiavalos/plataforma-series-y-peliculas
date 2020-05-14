@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Home } from '@styled-icons/feather/Home'
 import { Video } from '@styled-icons/feather/Video'
 import { Tv } from '@styled-icons/feather/Tv'
+import { Search } from '@styled-icons/feather/Search'
 
 
 
@@ -22,11 +23,12 @@ background-color: black;
 
 const Nav = () => {
 
-    return(
+    return (
         <NavStyled>
-        <Link className='home' to='/'><Home/></Link>
-        <Link className='movies' to='/movies'><Video/></Link>
-        <Link className='tv' to='/tv'><Tv/></Link>
+            <Link className='home' to='/'><Home /></Link>
+            <Link className='movies' to='/movies'><Video /></Link>
+            <Link className='tv' to='/tv'><Tv /></Link>
+            <Link className='tv' to='/tv'><Search /></Link>
         </NavStyled>
 
     )
