@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Nav from './components/Nav';
+import CardSection from './components/CardSection'
+import useFetch from './hook/useFetch';
 
-function App() {
+
+
+const App = () => {
+  const trendingMovies = useFetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`);
+console.log(process.env.REACT_APP_API_KEY)
+  console.log(trendingMovies)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+        <Nav/>
+        {trendingMovies &&
+          <CardSection title="Trending Movies" info={trendingMovies.results}/>
+        }
+    </Router>
   );
 }
 
