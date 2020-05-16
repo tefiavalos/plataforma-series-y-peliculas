@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import CardSection from './CardSection'
 
 const CardStyled = styled.div`
 width: 18%;
@@ -24,23 +25,18 @@ img{
 `
 
 
-const Card = ({ info }) => {
+const Card = ({ img, titlemedia }) => {
+
     return (
         <>
-            {
-                info.map((element) => {
-                    return (
-                        <CardStyled>
-                            <div className="img-div">
-                            <img src={`https://image.tmdb.org/t/p/w500${element.poster_path}`}></img>
-                            </div>
-                            <div className="title-div">
-                            <h4>{element.media_type == "tv" ? element.original_name : element.title}</h4>
-                            </div>
-                        </CardStyled>
-                    )
-                })
-            }
+            <CardStyled>
+                <div className="img-div">
+                    <img src={img} />
+                </div>
+                <div className="title-div">
+                    <h4>{titlemedia}</h4>
+                </div>
+            </CardStyled>
         </>
     )
 }

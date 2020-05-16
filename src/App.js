@@ -1,26 +1,29 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
-import TrendingSection from './components/TrendingSection'
+import TrendingSection from './components/TrendingSection';
 import useFetch from './hook/useFetch';
+import Movies from './components/Movies';
+import Tv from './components/Tv';
+import Home from './components/Home'
+
 
 
 
 const App = () => {
-  const trendingMovies = useFetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`);
-  const trendingTv = useFetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`);
 
 
   return (
     <Router>
       <Nav />
-      {trendingMovies &&
-        <TrendingSection title={"Trending Movies"} info={trendingMovies.results} />
-      }
+      <Switch>
+        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/movies" component={Movies}></Route>
+        <Route exact path="/tv" component={Tv}></Route>
+      </Switch>
 
-      {trendingTv &&
-        <TrendingSection title={"Trending Tv Show"} info={trendingTv.results} />
-      }
+
+
     </Router>
   );
 }

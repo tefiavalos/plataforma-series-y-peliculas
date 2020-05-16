@@ -25,7 +25,7 @@ const TrendingSection = ({ info, title }) => {
                 <h3>{title}</h3>
                 <Link className="link" to="/movies">Explore all</Link>
             </div>
-            <CardSection info={info}></CardSection>
+            <CardSection info={info} cardnumber={5}></CardSection>
         </TrendingSectionStyled>
     )
 }

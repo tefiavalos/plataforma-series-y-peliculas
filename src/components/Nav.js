@@ -14,7 +14,7 @@ justify-content: space-around;
 width: 100%;
 padding: 2% 0;
 background-color: black;
-.home, .movies, .tv{
+.home, .movies, .tv, .search{
     color:white;
     width: 30px;
 
@@ -28,7 +28,7 @@ const Nav = () => {
             <Link className='home' to='/'><Home /></Link>
             <Link className='movies' to='/movies'><Video /></Link>
             <Link className='tv' to='/tv'><Tv /></Link>
-            <Link className='tv' to='/tv'><Search /></Link>
+            <Link className="search" to="/"> <Search /></Link>
         </NavStyled>
 
     )
