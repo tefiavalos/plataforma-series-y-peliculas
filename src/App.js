@@ -6,11 +6,12 @@ import useFetch from './hook/useFetch';
 import Movies from './components/Movies';
 import Tv from './components/Tv';
 import Home from './components/Home'
+import CardSection from './components/CardSection';
 
 
 
 
-const App = () => {
+const App = (info) => {
 
 
   return (

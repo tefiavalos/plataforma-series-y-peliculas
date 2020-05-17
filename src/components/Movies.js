@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import useFetch from '../hook/useFetch';
 import TrendingSection from './TrendingSection';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CardSection from './CardSection';
 
 const Movies = () => {
 
@@ -12,20 +14,21 @@ const Movies = () => {
 
         <>
             {popularMovies &&
-                <TrendingSection title={"Popular Movies"} info={popularMovies.results} />
+                <TrendingSection link={"movie/category/popular"} title={"Popular Movies"} info={popularMovies.results} />
             }
 
             {topRatedMovies &&
-                <TrendingSection title={"Top Rated Movies"} info={topRatedMovies.results} />
+                <TrendingSection link={"movie/category/top_rated"} title={"Top Rated Movies"} info={topRatedMovies.results} />
             }
 
             {upcomingMovies &&
-                <TrendingSection title={"Upcoming Movies"} info={upcomingMovies.results} />
+                <TrendingSection link={"movie/category/upcoming"} title={"Upcoming Movies"} info={upcomingMovies.results} />
             }
 
             {nowPlayingMovies &&
-                <TrendingSection title={"Now Playing Movies"} info={nowPlayingMovies.results} />
+                <TrendingSection link={"movie/category/now_playing"} title={"Now Playing Movies"} info={nowPlayingMovies.results} />
             }
+
         </>
     )
 }

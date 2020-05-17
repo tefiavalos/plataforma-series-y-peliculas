@@ -20,7 +20,7 @@ const CardSection = ({ info, cardnumber }) => {
                         return (
                             <Card
                                 img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}
-                                titlemedia={element.media_type == "tv" ? element.original_name : element.title}
+                                titlemedia={element.original_name ? element.original_name : element.title}
                             />
                         )
                     }
