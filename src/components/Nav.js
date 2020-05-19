@@ -26,7 +26,7 @@ const Nav = () => {
     return (
         <NavStyled>
             <Link className='home' to='/'><Home /></Link>
-            <Link className='movies' to='/movies'><Video /></Link>
+            <Link className='movies' to='/movie'><Video /></Link>
             <Link className='tv' to='/tv'><Tv /></Link>
             <Link className="search" to="/"> <Search /></Link>
         </NavStyled>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import useFetch from '../hook/useFetch';
+import useFetch from '../hooks/useFetch';
 import TrendingSection from './TrendingSection';
 
 const Tv = () => {

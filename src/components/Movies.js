@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useFetch from '../hook/useFetch';
+import useFetch from '../hooks/useFetch';
 import TrendingSection from './TrendingSection';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import CardSection from './CardSection';
@@ -28,7 +28,7 @@ const Movies = () => {
             {nowPlayingMovies &&
                 <TrendingSection link={"movie/category/now_playing"} title={"Now Playing Movies"} info={nowPlayingMovies.results} />
             }
-
+           
         </>
     )
 }

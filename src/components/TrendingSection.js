@@ -30,12 +30,7 @@ const TrendingSection = ({ info, title, link }) => {
                 <CardSection info={info} link={link} cardnumber={5}></CardSection>
             </TrendingSectionStyled>
 
-            <Router>
-                <Switch>
-                    <Route exact path="/movie/category/popular" component={() => { return (<CardSection cardnumber={info && info.length}></CardSection>) }}></Route>
-                </Switch>
-            </Router>
-
+           
         </>
     )
 }

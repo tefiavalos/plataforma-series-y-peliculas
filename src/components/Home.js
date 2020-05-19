@@ -1,6 +1,6 @@
 import React from 'react';
 import TrendingSection from './TrendingSection'
-import useFetch from '../hook/useFetch';
+import useFetch from '../hooks/useFetch';
 
 
 const Home = () => {
@@ -20,7 +20,8 @@ const Home = () => {
                 <TrendingSection link={"tv/category/trending"} title={"Trending Tv Show"} info={trendingTv.results} />
             }
 
-        </>)
+        </>
+        )
 
 }
 

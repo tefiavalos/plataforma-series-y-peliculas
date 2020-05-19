@@ -8,25 +8,34 @@ display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
 background-color: #141414;
+h3{
+    display:block;
+}
 `
 
 
-const CardSection = ({ info, cardnumber }) => {
+const CardSection = ({ info, cardnumber, titleall }) => {
     return (
+        <>
+        <h3>{titleall}</h3>
         <CardSectionStyled>
             {info &&
                 info.map((element, i) => {
                     if (i < cardnumber) {
+
                         return (
-                            <Card
-                                img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}
-                                titlemedia={element.original_name ? element.original_name : element.title}
-                            />
+                            <>
+                                <Card
+                                    img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}
+                                    titlemedia={element.original_name ? element.original_name : element.title}
+                                />
+                            </>
                         )
                     }
                 })
             }
         </CardSectionStyled>
+        </>
     )
 }
 
