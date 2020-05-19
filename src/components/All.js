@@ -19,6 +19,7 @@ color: #fff;
 `
 const All = ({ title, link }) => {
     const params = useParams();
+    console.log(params)
     let urlFetch = ''
     if (params && params.media) {
         const urlPosibles = {
@@ -29,7 +30,7 @@ const All = ({ title, link }) => {
                 airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
                 trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
             },
-            movies: {
+            movie: {
                 popular: `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
                 top_rated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
                 upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
@@ -37,20 +38,45 @@ const All = ({ title, link }) => {
                 trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`
             },
         }
-        const primerObjeto = urlPosibles[params.media]
-        console.log(primerObjeto)
-        urlFetch = primerObjeto[params.categoria]
-        console.log(urlFetch)
+        const mediaObject = urlPosibles[params.media]
+        urlFetch = mediaObject[params.categoria]
+        
     }
-    const trendingTv = useFetch(urlFetch);
+    const allMedia = useFetch(urlFetch);
+    let titleSecond = params.media == "tv" ? "TV Shows" : "Movies";
+    let titleFirst = ""
+    //los titulos van a estar en el objeto
+    if (params.categoria == "popular") {
+        titleFirst = "Popular"
+    }
+    else if (params.categoria == "top_rated") {
+        titleFirst = "Top Rated"
+    }
+    else if (params.categoria == "on_the_air") {
+        titleFirst = "On The Air"
+    }
+    else if (params.categoria == "airing_today") {
+        titleFirst = "Airing Today"
+    }
+    else if (params.categoria == "trending") {
+        titleFirst = "Trending"
+    }
+    else if (params.categoria == "upcoming") {
+        titleFirst = "Up Coming"
+    }
+    else if (params.categoria == "now_playing") {
+        titleFirst = "Now Playing"
+    }
+
 
     return (
+
         <>
             <AllStyled>
                 <div className="title">
                     <h3>{title}</h3>
                 </div>
-                <CardSection info={trendingTv && trendingTv.results} titleall={"Trending Series"} cardnumber={trendingTv && trendingTv.results.length} link={link}></CardSection>
+                <CardSection info={allMedia && allMedia.results} titleall={titleFirst + " " + titleSecond} cardnumber={allMedia && allMedia.results.length} link={link}></CardSection>
             </AllStyled>
         </>
     )
