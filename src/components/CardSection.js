@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Card from './Card'
+import useFetch from '../hooks/useFetch';
 
 const CardSectionStyled = styled.section`
 width: 100%;
@@ -14,27 +15,33 @@ h3{
 `
 
 
-const CardSection = ({ info, cardnumber, titleall }) => {
+const CardSection = ({ info, cardnumber, titleall, id, media }) => {
+
+    //const movieDetails = useFetch(`https://api.themoviedb.org/3/movie/{movie_${id}}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+    const tvDetails = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+
+    console.log(tvDetails)
     return (
         <>
-        <h3>{titleall}</h3>
-        <CardSectionStyled>
-            {info &&
-                info.map((element, i) => {
-                    if (i < cardnumber) {
-
-                        return (
-                            <>
-                                <Card
-                                    img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}
-                                    titlemedia={element.original_name ? element.original_name : element.title}
-                                />
-                            </>
-                        )
-                    }
-                })
-            }
-        </CardSectionStyled>
+            <h3>{titleall}</h3>
+            <CardSectionStyled>
+                {info &&
+                    info.map((element, i) => {
+                        if (i < cardnumber) {
+                            return (
+                                <>
+                                    <Card
+                                        media={media}
+                                        id={element.id}
+                                        img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}
+                                        titlemedia={element.original_name ? element.original_name : element.title}
+                                    />
+                                </>
+                            )
+                        }
+                    })
+                }
+            </CardSectionStyled>
         </>
     )
 }

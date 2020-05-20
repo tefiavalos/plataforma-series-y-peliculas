@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import CardSection from './CardSection'
+import Details from './Details'
+import { Link } from 'react-router-dom';
 
 const CardStyled = styled.div`
 width: 18%;
@@ -25,17 +27,19 @@ img{
 `
 
 
-const Card = ({ img, titlemedia }) => {
+const Card = ({ img, titlemedia, id, media }) => {
 
     return (
         <>
             <CardStyled>
+                <Link to ={`/${media}/${id}`}>
                 <div className="img-div">
                     <img src={img} />
                 </div>
                 <div className="title-div">
                     <h4>{titlemedia}</h4>
                 </div>
+                </Link>
             </CardStyled>
         </>
     )

@@ -67,7 +67,7 @@ const All = ({ title, link }) => {
     else if (params.categoria == "now_playing") {
         titleFirst = "Now Playing"
     }
-
+console.log(params.media)
 
     return (
 
@@ -76,7 +76,7 @@ const All = ({ title, link }) => {
                 <div className="title">
                     <h3>{title}</h3>
                 </div>
-                <CardSection info={allMedia && allMedia.results} titleall={titleFirst + " " + titleSecond} cardnumber={allMedia && allMedia.results.length} link={link}></CardSection>
+                <CardSection media={} info={allMedia && allMedia.results} titleall={titleFirst + " " + titleSecond} cardnumber={allMedia && allMedia.results.length} link={link}></CardSection>
             </AllStyled>
         </>
     )
