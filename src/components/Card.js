@@ -9,20 +9,27 @@ width: 18%;
 display: flex;
 flex-direction: column;
 background-color: #141414;
-color:
+color: #fff;
 margin: 5px 0;
-.img-div{
-    width:100%;
-    height: 80%;
-img{
-    width: 100%;
-    height: 100%;
-}
-}
-.title-div{
-    h4{
-        margin: 10px;
-    }
+.link{
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    margin:0;
+    .img-div {
+        flex: 6;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .title-div {
+        flex: 1;
+        h4 {
+          margin: 2px;
+        }
+      }  
 }
 `
 
@@ -32,7 +39,7 @@ const Card = ({ img, titlemedia, id, media }) => {
     return (
         <>
             <CardStyled>
-                <Link to ={`/${media}/${id}`}>
+                <Link className="link" to ={`/${media}/${id}`}>
                 <div className="img-div">
                     <img src={img} />
                 </div>

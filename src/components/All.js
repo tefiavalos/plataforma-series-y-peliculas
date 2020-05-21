@@ -19,7 +19,6 @@ color: #fff;
 `
 const All = ({ title, link }) => {
     const params = useParams();
-    console.log(params)
     let urlFetch = ''
     if (params && params.media) {
         const urlPosibles = {
@@ -40,7 +39,7 @@ const All = ({ title, link }) => {
         }
         const mediaObject = urlPosibles[params.media]
         urlFetch = mediaObject[params.categoria]
-        
+
     }
     const allMedia = useFetch(urlFetch);
     let titleSecond = params.media == "tv" ? "TV Shows" : "Movies";
@@ -67,7 +66,7 @@ const All = ({ title, link }) => {
     else if (params.categoria == "now_playing") {
         titleFirst = "Now Playing"
     }
-console.log(params.media)
+
 
     return (
 
@@ -76,7 +75,12 @@ console.log(params.media)
                 <div className="title">
                     <h3>{title}</h3>
                 </div>
-                <CardSection media={} info={allMedia && allMedia.results} titleall={titleFirst + " " + titleSecond} cardnumber={allMedia && allMedia.results.length} link={link}></CardSection>
+                <CardSection
+                    info={allMedia && allMedia.results}
+                    titleall={titleFirst + " " + titleSecond}
+                    cardnumber={allMedia && allMedia.results.length}
+                    link={link}
+                    media={params.media}></CardSection>
             </AllStyled>
         </>
     )

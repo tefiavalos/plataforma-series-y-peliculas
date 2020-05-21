@@ -12,19 +12,19 @@ const Tv = () => {
     return (
         <>
             {popularTv &&
-                <TrendingSection link={"tv/category/popular"} title={"Popular Tv Shows"} info={popularTv.results} id={popularTv && popularTv.results.id}/>
+                <TrendingSection link={"tv/category/popular"} title={"Popular Tv Shows"} info={popularTv.results} media={"tv"}/>
             }
 
             {topRatedTv &&
-                <TrendingSection link={"tv/category/top_rated"} title={"Top Rated Tv Shows"} info={topRatedTv.results} id={topRatedTv.results.id}/>
+                <TrendingSection link={"tv/category/top_rated"} title={"Top Rated Tv Shows"} info={topRatedTv.results} media={"tv"}/>
             }
 
             {currentlyAiring &&
-                <TrendingSection link={"tv/category/on_the_air"} title={"Currently Airing Tv Shows"} info={currentlyAiring.results} id={currentlyAiring.results.id} />
+                <TrendingSection link={"tv/category/on_the_air"} title={"Currently Airing Tv Shows"} info={currentlyAiring.results} media={"tv"}/>
             }
 
             {airingToday &&
-                <TrendingSection link={"tv/category/airing_today"} title={"Airing Today Tv Shows"} info={airingToday.results} id={airingToday.results.id} />
+                <TrendingSection link={"tv/category/airing_today"} title={"Airing Today Tv Shows"} info={airingToday.results} media={"tv"}/>
             }
         </>
     )

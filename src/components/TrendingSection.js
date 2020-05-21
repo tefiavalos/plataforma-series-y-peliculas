@@ -19,18 +19,26 @@ color: #fff;
 
 
 
-const TrendingSection = ({ info, title, link }) => {
+const TrendingSection = ({ info, title, link, media }) => {
     return (
         <>
             <TrendingSectionStyled>
                 <div className="title">
                     <h3>{title}</h3>
-                    <Link className="link" to={link}>Explore all</Link>
+                    <Link
+                        className="link"
+                        to={link}>Explore all
+                    </Link>
                 </div>
-                <CardSection info={info} link={link} cardnumber={5}></CardSection>
+                <CardSection
+                    info={info}
+                    link={link}
+                    cardnumber={5}
+                    media={media}>
+                </CardSection>
             </TrendingSectionStyled>
 
-           
+
         </>
     )
 }

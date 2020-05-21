@@ -14,19 +14,19 @@ const Movies = () => {
 
         <>
             {popularMovies &&
-                <TrendingSection link={"movie/category/popular"} title={"Popular Movies"} info={popularMovies.results} />
+                <TrendingSection link={"movie/category/popular"} title={"Popular Movies"} info={popularMovies.results} media={"movie"}/>
             }
 
             {topRatedMovies &&
-                <TrendingSection link={"movie/category/top_rated"} title={"Top Rated Movies"} info={topRatedMovies.results} />
+                <TrendingSection link={"movie/category/top_rated"} title={"Top Rated Movies"} info={topRatedMovies.results} media={"movie"}/>
             }
 
             {upcomingMovies &&
-                <TrendingSection link={"movie/category/upcoming"} title={"Upcoming Movies"} info={upcomingMovies.results} />
+                <TrendingSection link={"movie/category/upcoming"} title={"Upcoming Movies"} info={upcomingMovies.results} media={"movie"}/>
             }
 
             {nowPlayingMovies &&
-                <TrendingSection link={"movie/category/now_playing"} title={"Now Playing Movies"} info={nowPlayingMovies.results} />
+                <TrendingSection link={"movie/category/now_playing"} title={"Now Playing Movies"} info={nowPlayingMovies.results} media={"movie"}/>
             }
            
         </>

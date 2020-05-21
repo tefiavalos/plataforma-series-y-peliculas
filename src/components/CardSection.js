@@ -15,12 +15,10 @@ h3{
 `
 
 
-const CardSection = ({ info, cardnumber, titleall, id, media }) => {
+const CardSection = ({ info, cardnumber, titleall, media }) => {
 
-    //const movieDetails = useFetch(`https://api.themoviedb.org/3/movie/{movie_${id}}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    const tvDetails = useFetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
 
-    console.log(tvDetails)
+   
     return (
         <>
             <h3>{titleall}</h3>
