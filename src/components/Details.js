@@ -5,7 +5,9 @@ import CardSection from './CardSection'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Overview from './Overview';
+import Episodes from './Episodes';
 import Videos from './Videos';
+import Similars from './Similars';
 
 const TitleDetails = styled.div`
 display: flex;
@@ -17,50 +19,55 @@ const OverviewSection = styled.article`
 const Details = () => {
     const params = useParams();
     const details = {
-    movie: `https://api.themoviedb.org/3/movie/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
-    tv: `https://api.themoviedb.org/3/tv/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        movie: `https://api.themoviedb.org/3/movie/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+        tv: `https://api.themoviedb.org/3/tv/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     }
     const media = [params.media]
     const mediaDetails = useFetch(details[media])
     const [page, setPage] = useState("overview")
     const handleClick = e => {
         setPage(e.target.id)
-      }
+    }
+    console.log(mediaDetails)
     const paginacion = {
-        overview: <Overview />,
+        overview: <Overview
+            released={mediaDetails && mediaDetails.release_date}
+            name={mediaDetails && mediaDetails.original_name}
+            overview={mediaDetails && mediaDetails.overview}
+            seasons={mediaDetails && mediaDetails.number_of_seasons}
+            episodes={mediaDetails && mediaDetails.number_of_episodes}
+            runtime={mediaDetails && mediaDetails.episode_run_time && mediaDetails.episode_run_time[0]}
+            runtimemovies={mediaDetails && mediaDetails.runtime}
+            genres={mediaDetails && mediaDetails.genres}
+            production={mediaDetails && mediaDetails.production_companies}
+            media={media}
+            revenue={mediaDetails && mediaDetails.revenue}
+            budget={mediaDetails && mediaDetails.budget}
+        />,
         videos: <Videos />,
-        /* photos: <Photos />,      
-        episodes: <Episodes /> */}
+        photos: <Similars />,
+        episodes: <Episodes />
+    }
 
     return (
         <>
             <TitleDetails>
-                <h2 id="overview" onClick={handleClick}>OVERVIEW</h2>
-                <h2 id="videos" onClick={handleClick}>VIDEOS</h2>
-                {/* <h2 id="photos" onClick={handleClick}>PHOTOS</h2>
-                <h2 id="episodes" onClick={handleClick}>EPISODES</h2> */}
-            </TitleDetails>
-            <OverviewSection>
-                <h3>Storyline</h3>
-                {/* <p>{detailsMovie && detailsMovie.overview}</p> */}
-                <div>
-                    <div>
-                        <p>Released {mediaDetails && mediaDetails.release_date}</p>
-                        {/* <p>Director {detailsMovie && detailsMovie.director}</p>
-                        <p>Status {detailsMovie && detailsMovie.status}</p>
-                        <p>Production {detailsMovie && detailsMovie.production_companies
-                            && detailsMovie.production_companies[0].name},
-                            {detailsMovie && detailsMovie.production_companies 
-                            && detailsMovie.production_companies[1].name}</p>
-                    </div>
-                    <div>
-                        <p>Runtime {detailsMovie && detailsMovie.runtime} min.</p>
-                        <p>Genres {detailsMovie && detailsMovie.genres.name}</p> {/*array*/}
-                        {/* <p>Language {detailsMovie && detailsMovie.spoken_languages.name}</p> */} {/*array*/}
+                {media == "tv" ?
+                    <>
+                        <button id="overview" onClick={handleClick}>OVERVIEW</button>
+                        <button id="videos" onClick={handleClick}>VIDEOS</button>
+                        <button id="episodes" onClick={handleClick}>EPISODES</button>
+                        <button id="similars" onClick={handleClick}>SIMILARS</button>
+                    </>
+                    :
+                    <>
+                        <button id="overview" onClick={handleClick}>OVERVIEW</button>
+                        <button id="videos" onClick={handleClick}>VIDEOS</button>
+                        <button id="similars" onClick={handleClick}>SIMILARS</button>
+                    </>}
 
-                    </div>
-                </div> 
-            </OverviewSection>
+            </TitleDetails>
+
             {paginacion[page]}
         </>
     )
