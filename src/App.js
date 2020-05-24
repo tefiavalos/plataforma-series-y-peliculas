@@ -7,8 +7,9 @@ import Movies from './components/Movies';
 import Tv from './components/Tv';
 import Home from './components/Home'
 import CardSection from './components/CardSection';
-import All from './components/All'
-import Details from './components/Details'
+import All from './components/All';
+import Details from './components/Details';
+import Videos from './components/Videos';
 
 
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route exact path="/tv" component={Tv}></Route>
         <Route exact path="/:media/category/:categoria" component={All}></Route>
         <Route exact path="/:media/:id" component={Details}></Route>
+        <Route exact path="/:media/:id/:paginacion" component={Videos}></Route>
       </Switch>
 
 

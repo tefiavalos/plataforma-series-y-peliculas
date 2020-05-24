@@ -44,9 +44,10 @@ const Details = () => {
             revenue={mediaDetails && mediaDetails.revenue}
             budget={mediaDetails && mediaDetails.budget}
         />,
-        videos: <Videos />,
-        photos: <Similars />,
-        episodes: <Episodes />
+        videos: <Videos params={params} />,
+        similars: <Similars params={params} />,
+        episodes: <Episodes 
+        seasons={mediaDetails && mediaDetails.seasons}/>
     }
 
     return (
