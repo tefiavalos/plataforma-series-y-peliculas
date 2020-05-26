@@ -39,7 +39,7 @@ const Card = ({ img, titlemedia, id, media }) => {
     return (
         <>
             <CardStyled>
-                <Link className="link" to ={`/${media}/${id}`}>
+                <Link className="link" to ={`/${media}/${id}/overview`}>
                 <div className="img-div">
                     <img src={img} />
                 </div>

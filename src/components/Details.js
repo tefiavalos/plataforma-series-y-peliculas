@@ -28,7 +28,7 @@ const Details = () => {
     const handleClick = e => {
         setPage(e.target.id)
     }
-    console.log(mediaDetails)
+    console.log(params)
     const paginacion = {
         overview: <Overview
             released={mediaDetails && mediaDetails.release_date}
@@ -55,16 +55,16 @@ const Details = () => {
             <TitleDetails>
                 {media == "tv" ?
                     <>
-                        <button id="overview" onClick={handleClick}>OVERVIEW</button>
-                        <button id="videos" onClick={handleClick}>VIDEOS</button>
-                        <button id="episodes" onClick={handleClick}>EPISODES</button>
-                        <button id="similars" onClick={handleClick}>SIMILARS</button>
+                        <Link to={`/${params.media}/${params.id}/overview`} ><button  id="overview" onClick={handleClick}>OVERVIEW</button></Link>
+                        <Link to={`/${params.media}/${params.id}/videos`}><button id="videos" onClick={handleClick}>VIDEOS</button></Link>
+                        <Link to={`/${params.media}/${params.id}/episodes`}><button id="episodes" onClick={handleClick}>EPISODES</button></Link>
+                        <Link to={`/${params.media}/${params.id}/similars`}><button id="similars" onClick={handleClick}>SIMILARS</button></Link>
                     </>
                     :
                     <>
-                        <button id="overview" onClick={handleClick}>OVERVIEW</button>
-                        <button id="videos" onClick={handleClick}>VIDEOS</button>
-                        <button id="similars" onClick={handleClick}>SIMILARS</button>
+                        <Link to={`/${params.media}/${params.id}/overview`}><button id="overview" onClick={handleClick}>OVERVIEW</button></Link>
+                        <Link to={`/${params.media}/${params.id}/videos`}><button id="videos" onClick={handleClick}>VIDEOS</button></Link>
+                        <Link to={`/${params.media}/${params.id}/similars`}><button id="similars" onClick={handleClick}>SIMILARS</button></Link>
                     </>}
 
             </TitleDetails>

@@ -10,6 +10,8 @@ import CardSection from './components/CardSection';
 import All from './components/All';
 import Details from './components/Details';
 import Videos from './components/Videos';
+import Overview from './components/Overview';
+import SearchSection from './components/SearchSection';
 
 
 
@@ -24,8 +26,9 @@ const App = () => {
         <Route exact path="/movie" component={Movies}></Route>
         <Route exact path="/tv" component={Tv}></Route>
         <Route exact path="/:media/category/:categoria" component={All}></Route>
-        <Route exact path="/:media/:id" component={Details}></Route>
-        <Route exact path="/:media/:id/:paginacion" component={Videos}></Route>
+        <Route exact path="/:media/:id/" component={Details}></Route>
+        <Route exact path="/:media/:id/:details" component={Details}></Route>
+        <Route exact path="/search?=:busqueda" component={SearchSection}></Route>
       </Switch>
 
 
