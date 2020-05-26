@@ -8,11 +8,16 @@ const VideoStyled = styled.article``
 const Videos = () => {
     const paramsVideo= useParams()
     const videos = useFetch(`https://api.themoviedb.org/3/${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+    console.log(videos)
     return(
         <VideoStyled>
             {videos && videos.results && videos.results.map((video) => {
                 return(
-                    <p>{video.name}</p>
+                    <iframe
+          id="player"
+          type="text/html"
+          src={`https://www.youtube.com/embed/${video.key}`}
+        />
                 )
             })}
         </VideoStyled>

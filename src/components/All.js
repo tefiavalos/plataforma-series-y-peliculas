@@ -19,6 +19,7 @@ color: #fff;
 `
 const All = ({ title, link }) => {
     const params = useParams();
+    console.log(params)
     let urlFetch = ''
     if (params && params.media) {
         const urlPosibles = {
