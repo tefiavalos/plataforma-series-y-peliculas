@@ -7,32 +7,34 @@ const EpisodesStyled = styled.article``
 
 
 const Episodes = ({ seasons }) => {
+    //como reemplazar season_number?
     const params = useParams()
     const history = useHistory();
     const [seasonNumber, setSeasonNumber] = useState(1);
-    
+
     const episodes = useFetch(`https://api.themoviedb.org/3/tv/${[params.id]}/season/${seasonNumber}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+
+
     console.log(seasons)
     console.log(seasonNumber)
     console.log(episodes)
-    
+
     const handleChange = (e) => {
-        setSeasonNumber(e.target.value);
+        setSeasonNumber(Number(e.target.value));
         history.push(seasonNumber);
-        
+
     }
-    
     return (
         <EpisodesStyled>
             <select value={seasonNumber} onChange={handleChange}>
                 {seasons && seasons.map((season) => {
                     return (
-                    <option value={season.season_number}>Season {season.season_number}</option>
+                        <option value={season.season_number}>Season {season.season_number}</option>
                     )
                 })}
             </select>
-             {/* {episodes &&
-                episodes.espisodes.map(e => {
+            {episodes &&
+                episodes.episodes.map(e => {
                     return (
                         <div>
                             {
@@ -47,8 +49,9 @@ const Episodes = ({ seasons }) => {
                                 {e.name}
                             </h3>
                             <p>{e.overview}</p>
-                        </div>)})
-                }  */}
+                        </div>)
+                })
+            }
         </EpisodesStyled>
     )
 }
