@@ -7,25 +7,27 @@ import Card from './Card'
 const SimilarsStyled = styled.article`
 background-color: #141414;
 display: flex;
-justify-content: space-between;
+justify-content: space-around;
 flex-wrap: wrap;
 `
 
 const Similars = () => {
-const params = useParams()
-const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
-console.log(similars)
-    return(
-    <SimilarsStyled>
-        {similars && similars.results && similars.results.map((similar) => {
-                return(
-                    <Card 
-                    img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
-                    titlemedia={similar.title} />
+    const params = useParams()
+    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
+    return (
+        <SimilarsStyled>
+            {similars && similars.results && similars.results.map((similar) => {
+                return (
+                    <Card
+                        img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
+                        titlemedia={similar.title}
+                        media={params.media}
+                        id={similar.id}
+                    />
                 )
             })}
-    </SimilarsStyled>
-        )
+        </SimilarsStyled>
+    )
 }
 
 export default Similars

@@ -12,6 +12,7 @@ import Details from './components/Details';
 import Videos from './components/Videos';
 import Overview from './components/Overview';
 import SearchSection from './components/SearchSection';
+import './App.css';
 
 
 
@@ -28,7 +29,7 @@ const App = () => {
         <Route exact path="/:media/category/:categoria" component={All}></Route>
         <Route exact path="/:media/:id/" component={Details}></Route>
         <Route exact path="/:media/:id/:details" component={Details}></Route>
-        <Route exact path="/search?=:busqueda" component={SearchSection}></Route>
+        <Route exact path="/:media/:id/overview" component={Details}></Route>
       </Switch>
 
 

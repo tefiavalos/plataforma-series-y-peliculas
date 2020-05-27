@@ -5,8 +5,7 @@ import CardSection from './CardSection'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 const TrendingSectionStyled = styled.section`
-background-color: #141414;
-color: #fff;
+
 .title{
     display:flex;
     .link{

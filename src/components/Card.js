@@ -8,12 +8,10 @@ const CardStyled = styled.div`
 width: 18%;
 display: flex;
 flex-direction: column;
-background-color: #141414;
-color: #fff;
 margin: 5px 0;
 .link{
     text-decoration: none;
-    color: #fff;
+    color: rgb(220, 221, 222);
     display: flex;
     flex-direction: column;
     margin:0;

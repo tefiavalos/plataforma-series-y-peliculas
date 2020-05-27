@@ -3,7 +3,17 @@ import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 
-const VideoStyled = styled.article``
+const VideoStyled = styled.article`
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+.iframe{
+ width: 25%;
+ margin: 10px;
+ iframe{
+     width:100%
+ }
+}`
 //no se ven los videos pero el fecth trae la ingo
 const Videos = () => {
     const paramsVideo= useParams()
@@ -11,15 +21,21 @@ const Videos = () => {
     console.log(videos)
     return(
         <VideoStyled>
+            
             {videos && videos.results && videos.results.map((video) => {
                 return(
+                    <div className="iframe">
                     <iframe
           id="player"
           type="text/html"
           src={`https://www.youtube.com/embed/${video.key}`}
         />
+                <h4>{video.name}</h4>
+                <p>{video.type}</p>
+                </div>
                 )
             })}
+        
         </VideoStyled>
     )
 }

@@ -8,7 +8,7 @@ width: 100%;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;
-background-color: #141414;
+
 h3{
     display:block;
 }

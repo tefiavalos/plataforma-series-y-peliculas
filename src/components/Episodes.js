@@ -3,11 +3,52 @@ import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 import { Link, useParams, useHistory } from 'react-router-dom';
 
-const EpisodesStyled = styled.article``
+const EpisodesStyled = styled.article`
+select{
+    margin: 10px;
+    -webkit-appearance: none;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 30px;
+    color: rgb(220, 221, 222);
+    background-color: rgb(35, 39, 42);
+    cursor: pointer;
+    border-radius: 6px;
+    padding: 2px 30px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(220, 221, 222);
+}
+.container-episodes{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+.card-episode{
+    width:30%;
+    margin: 10px;
+    img{
+        width:100%;
+    }
+    h3{
+        font-weight: 400;
+        font-size: 18px;
+    span{
+    line-height: 20px;
+    margin-top: 0px;
+    color: rgb(33, 150, 243);
+    margin-right: 10px;
+    font-weight: 400;
+    }
+}
+    p{
+        font-weight: 300;
+    }
+}
+}
+`
 
 
 const Episodes = ({ seasons }) => {
-    //como reemplazar season_number?
     const params = useParams()
     const history = useHistory();
     const [seasonNumber, setSeasonNumber] = useState(1);
@@ -33,25 +74,29 @@ const Episodes = ({ seasons }) => {
                     )
                 })}
             </select>
-            {episodes &&
-                episodes.episodes.map(e => {
-                    return (
-                        <div>
-                            {
-                                <img
-                                    src={`https://image.tmdb.org/t/p/original${e.still_path}`}
-                                    alt={e.name} />
-                            }
-                            <h3>
-                                <span>
-                                    S{e.season_number}E{e.episode_number}
-                                </span>
-                                {e.name}
-                            </h3>
-                            <p>{e.overview}</p>
-                        </div>)
-                })
-            }
+            <div className="container-episodes">
+                {episodes &&
+                    episodes.episodes.map(e => {
+                        return (
+                            
+                                <div className="card-episode">
+                                    {
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/original${e.still_path}`}
+                                            alt={e.name} />
+                                    }
+                                    <h3>
+                                        <span>
+                                            S{e.season_number}E{e.episode_number}
+                                        </span>
+                                        {e.name}
+                                    </h3>
+                                    <p>{e.overview}</p>
+                                </div>
+                            )
+                    })
+                }
+            </div>
         </EpisodesStyled>
     )
 }
