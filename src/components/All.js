@@ -134,7 +134,7 @@ const All = ({ title, link }) => {
                     info={allMedia && allMedia.results}
                     titleall={titleFirst + " " + titleSecond}
                     cardnumber={allMedia && allMedia.results && allMedia.results.length}
-                    link={link}
+                    link={`${params.media}/${params.categoria}/page/${page}`}
                     media={params.media}></CardSection>
                     <div className="button-section">
                     <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
@@ -146,7 +146,7 @@ const All = ({ title, link }) => {
                 })} 
                 
                 {paginas && paginas.length > 5 && <button>...</button>}
-                {paginas && paginas.length > 5 && <button>{paginas.length}</button>}
+                {paginas && paginas.length > 5 && <button onClick={handleClick} value={paginas && paginas.length}>{paginas.length}</button>}
                 <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
                 </div>
             </AllStyled>

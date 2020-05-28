@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Card from './Card'
 import { Link, useParams } from 'react-router-dom';
 
+
 const CastStyled = styled.article`
 display:flex;
 flex-wrap: wrap;
