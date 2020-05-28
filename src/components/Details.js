@@ -10,6 +10,7 @@ import Videos from './Videos';
 import Similars from './Similars';
 import Cast from './Cast';
 import '../App.css';
+import CastDetails from './CastDetails';
 
 const TitleDetails = styled.div`
 display: flex;
@@ -70,6 +71,7 @@ const Details = () => {
     const handleClick = e => {
         const click = e.target.id
     }
+
     const paginacion = {
         overview: <Overview
             img={mediaDetails && mediaDetails.poster_path}

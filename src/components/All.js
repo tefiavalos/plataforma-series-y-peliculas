@@ -96,13 +96,7 @@ const All = ({ title, link }) => {
         titleFirst = "Now Playing"
     }
 
-    const handleClickArrowRight = () =>{
-        setPage(page++)
-    }
-
-    const handleClickArrowLeft = () =>{
-        setPage(page--)
-    }
+    
 
     const cacapis = () => {
         let paginacion = []
@@ -112,10 +106,17 @@ const All = ({ title, link }) => {
         return paginacion
     }
     console.log(allMedia && allMedia.total_pages)
-    /* console.log(paginacion) */
     const handleClick = (e) => {
         setPage(Number(e.target.value))
         
+    }
+
+    const handleClickArrowRight = () =>{
+        setPage(Number(page+1))
+    }
+
+    const handleClickArrowLeft = () =>{
+        setPage(Number(page-1))
     }
 //tengo que apretar dos veces para que cambie
     
