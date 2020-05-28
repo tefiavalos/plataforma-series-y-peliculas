@@ -25,14 +25,19 @@ margin: 5px 0;
       .title-div {
         flex: 1;
         h4 {
-          margin: 2px;
+          margin-top: 10px;
+          font-weight: 300;
+          font-size: 20px;
         }
       }  
+}
+:hover{
+  
 }
 `
 
 
-const Card = ({ img, titlemedia, id, media }) => {
+const Card = ({ img, titlemedia, id, media, name, character }) => {
 
     return (
         <>
@@ -43,6 +48,8 @@ const Card = ({ img, titlemedia, id, media }) => {
                 </div>
                 <div className="title-div">
                     <h4>{titlemedia}</h4>
+                    <h4>{name}</h4>
+                    <p>{character}</p>
                 </div>
                 </Link>
             </CardStyled>

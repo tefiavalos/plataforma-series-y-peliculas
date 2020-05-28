@@ -2,18 +2,75 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
-import Card from './Card'
+import Card from './Card';
+import { ArrowRight } from "@styled-icons/feather/ArrowRight"
+import { ArrowLeft } from "@styled-icons/feather/ArrowLeft"
 
 const SimilarsStyled = styled.article`
-background-color: #141414;
 display: flex;
 justify-content: space-around;
 flex-wrap: wrap;
+.button-section{
+    display: flex;
+    justify-content: center;
+    button{
+    background: none;
+    border: 1px solid rgb(54, 57, 63);
+    color: rgb(220, 221, 222);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 100%;
+    margin: 3px;
+    transition: all 0.2s ease 0s;
+    }
+}
+.icon{
+    margin-top: 20px;
+    color: #2196f3;
+    width: 30px;
+    margin: 0;
+    color: rgb(220, 221, 222);
+    cursor: pointer;
+}
 `
 
 const Similars = () => {
     const params = useParams()
-    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
+    let [page, setPage] = useState([1])
+    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
+    
+
+    const cacapis = () => {
+        let paginacion = []
+        for (let i = 1; i <= similars.total_pages; i++) {
+            paginacion.push(i)
+        }
+        return paginacion
+    }
+
+    const handleClickArrowRight = () =>{
+        setPage(page++)
+    }
+
+    const handleClickArrowLeft = () =>{
+        setPage(page--)
+    }
+
+    console.log(page)
+    /* console.log(paginacion) */
+    const handleClick = (e) => {
+        setPage(Number(e.target.value))
+        
+    }
+    
+    const paginas = similars && similars.total_pages && cacapis();
     return (
         <SimilarsStyled>
             {similars && similars.results && similars.results.map((similar) => {
@@ -26,6 +83,19 @@ const Similars = () => {
                     />
                 )
             })}
+            <div className="button-section">
+            <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
+                 {paginas && paginas.map((pag, i) => {
+                     if(i < 5){
+                    return (
+                        <button value={pag} onClick={handleClick}>{pag}</button>
+                    )}
+                })} 
+                
+                {paginas && paginas.length > 5 && <button>...</button>}
+                {paginas && paginas.length > 5 && <button>{paginas.length}</button>}
+                <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
+                </div>
         </SimilarsStyled>
     )
 }

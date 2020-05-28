@@ -1,41 +1,68 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import CardSection from './CardSection'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
+import { ArrowRight } from "@styled-icons/feather/ArrowRight"
+import { ArrowLeft } from "@styled-icons/feather/ArrowLeft"
 
 const AllStyled = styled.section`
-background-color: #141414;
-color: #fff;
-.title{
-    display:flex;
-    .link{
-        margin: 20px;
-        text-decoration: none;
-        color: #2196f3;
+h3{
+    font-size: 32px;
+    font-weight: 300;
+    margin: 45px 15px;
+}
+.button-section{
+    display: flex;
+    justify-content: center;
+    button{
+    background: none;
+    border: 1px solid rgb(54, 57, 63);
+    color: rgb(220, 221, 222);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 100%;
+    margin: 3px;
+    transition: all 0.2s ease 0s;
     }
+}
+.icon{
+    margin-top: 20px;
+    color: #2196f3;
+    width: 30px;
+    margin: 0;
+    color: rgb(220, 221, 222);
+    cursor: pointer;
 }
 `
 const All = ({ title, link }) => {
     const params = useParams();
-    console.log(params)
+    let [page, setPage] = useState([1])
+
     let urlFetch = ''
     if (params && params.media) {
         const urlPosibles = {
             tv: {
-                popular: `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                top_rated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
+                popular: `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                top_rated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
                 trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
             },
             movie: {
-                popular: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                top_rated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                now_playing: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`,
-                trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`
+                popular: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                top_rated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                now_playing: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
             },
         }
         const mediaObject = urlPosibles[params.media]
@@ -43,6 +70,7 @@ const All = ({ title, link }) => {
 
     }
     const allMedia = useFetch(urlFetch);
+
     let titleSecond = params.media == "tv" ? "TV Shows" : "Movies";
     let titleFirst = ""
     //los titulos van a estar en el objeto
@@ -68,7 +96,32 @@ const All = ({ title, link }) => {
         titleFirst = "Now Playing"
     }
 
+    const handleClickArrowRight = () =>{
+        setPage(page++)
+    }
 
+    const handleClickArrowLeft = () =>{
+        setPage(page--)
+    }
+
+    const cacapis = () => {
+        let paginacion = []
+        for (let i = 1; i <= allMedia.total_pages; i++) {
+            paginacion.push(i)
+        }
+        return paginacion
+    }
+    console.log(allMedia && allMedia.total_pages)
+    /* console.log(paginacion) */
+    const handleClick = (e) => {
+        setPage(Number(e.target.value))
+        
+    }
+//tengo que apretar dos veces para que cambie
+    
+    console.log(page)
+
+    const paginas = allMedia && allMedia.total_pages && cacapis();
     return (
 
         <>
@@ -79,9 +132,22 @@ const All = ({ title, link }) => {
                 <CardSection
                     info={allMedia && allMedia.results}
                     titleall={titleFirst + " " + titleSecond}
-                    cardnumber={allMedia && allMedia.results.length}
+                    cardnumber={allMedia && allMedia.results && allMedia.results.length}
                     link={link}
                     media={params.media}></CardSection>
+                    <div className="button-section">
+                    <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
+                 {paginas && paginas.map((pag, i) => {
+                     if(i < 5){
+                    return (
+                        <button value={pag} onClick={handleClick}>{pag}</button>
+                    )}
+                })} 
+                
+                {paginas && paginas.length > 5 && <button>...</button>}
+                {paginas && paginas.length > 5 && <button>{paginas.length}</button>}
+                <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
+                </div>
             </AllStyled>
         </>
     )

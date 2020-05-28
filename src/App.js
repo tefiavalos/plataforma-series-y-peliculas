@@ -13,6 +13,7 @@ import Videos from './components/Videos';
 import Overview from './components/Overview';
 import SearchSection from './components/SearchSection';
 import './App.css';
+import CastDetails from './components/CastDetails';
 
 
 
@@ -25,11 +26,14 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home}></Route>
         <Route exact path="/movie" component={Movies}></Route>
+        <Route exact path="/person/:id/overview" component={CastDetails}></Route>
+        <Route exact path="/search/:busqueda" component={SearchSection}></Route>
         <Route exact path="/tv" component={Tv}></Route>
         <Route exact path="/:media/category/:categoria" component={All}></Route>
         <Route exact path="/:media/:id/" component={Details}></Route>
         <Route exact path="/:media/:id/:details" component={Details}></Route>
         <Route exact path="/:media/:id/overview" component={Details}></Route>
+     
       </Switch>
 
 

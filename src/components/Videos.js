@@ -13,6 +13,14 @@ flex-wrap: wrap;
  iframe{
      width:100%
  }
+ h4{
+     font-weight: 300;
+     font-size: 20px;
+ }
+ p{
+    font-weight: 300;
+     font-size: 15px;
+ }
 }`
 //no se ven los videos pero el fecth trae la ingo
 const Videos = () => {

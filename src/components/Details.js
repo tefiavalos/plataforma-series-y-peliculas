@@ -8,6 +8,7 @@ import Overview from './Overview';
 import Episodes from './Episodes';
 import Videos from './Videos';
 import Similars from './Similars';
+import Cast from './Cast';
 import '../App.css';
 
 const TitleDetails = styled.div`
@@ -17,23 +18,40 @@ flex-direction: column;
     width: 100%
 }
 .buttons{
-    display:flex;
+    display: flex;
     justify-content: center;
     width: 100%;
 button{
-    background-color: rgb(35, 39, 42);;
-    color: #585858;
+    background-color: rgb(54, 57, 63);
+    color: rgb(168, 170, 173);
     width: auto;
-    margin: 20px;
-    font-size: 20px;
-    border-top: 1px solid rgb(35, 39, 42);;
-    border-right: 1px solid rgb(35, 39, 42);;
-    border-left: 1px solid rgb(35, 39, 42);;
-    border-bottom: 2px solid ;
+    margin: 20px;font-size: 22px;
+    border-top: 1px solid rgb(54, 57, 63);
+    border-right: 1px solid rgb(54, 57, 63);
+    border-left: 1px solid rgb(54, 57, 63);
+    border-bottom: 1px solid rgb(54, 57, 63);
     font-family: inherit;
     font-weight: bold;
 }
+
 }
+:hover{
+    .buttons{
+    #overview, #cast, #videos, #episodes, #similars {
+    color:rgb(220, 221, 222);
+    cursor: pointer;
+    }
+    }
+}
+:focus{
+    .buttons{
+        #overview, #cast, #videos, #episodes, #similars {
+        border: none;
+        border-bottom: 2px solid rgb(220, 221, 222);
+        }
+}
+}
+
 `
 const OverviewSection = styled.article`
 `
@@ -46,11 +64,12 @@ const Details = () => {
     }
     const media = [params.media]
     const mediaDetails = useFetch(details[media])
-    const [page, setPage] = useState("overview")
+    
+    const credits = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
+
     const handleClick = e => {
-        setPage(e.target.id)
+        const click = e.target.id
     }
-    console.log(mediaDetails)
     const paginacion = {
         overview: <Overview
             img={mediaDetails && mediaDetails.poster_path}
@@ -66,11 +85,13 @@ const Details = () => {
             media={media}
             revenue={mediaDetails && mediaDetails.revenue}
             budget={mediaDetails && mediaDetails.budget}
+            credits={credits}
         />,
         videos: <Videos params={params} />,
         similars: <Similars params={params} />,
         episodes: <Episodes
-            seasons={mediaDetails && mediaDetails.seasons} />
+            seasons={mediaDetails && mediaDetails.seasons} />,
+        cast: <Cast credits = {credits}/>
     }
 
     return (
@@ -82,6 +103,7 @@ const Details = () => {
                         <>
                         <div className="buttons">
                             <Link to={`/${params.media}/${params.id}/overview`} ><button id="overview" onClick={handleClick}>OVERVIEW</button></Link>
+                            <Link to={`/${params.media}/${params.id}/cast`}><button id="cast" onClick={handleClick}>CAST</button></Link>
                             <Link to={`/${params.media}/${params.id}/videos`}><button id="videos" onClick={handleClick}>VIDEOS</button></Link>
                             <Link to={`/${params.media}/${params.id}/episodes`}><button id="episodes" onClick={handleClick}>EPISODES</button></Link>
                             <Link to={`/${params.media}/${params.id}/similars`}><button id="similars" onClick={handleClick}>SIMILARS</button></Link>
@@ -91,6 +113,7 @@ const Details = () => {
                         <>
                         <div className="buttons">
                             <Link to={`/${params.media}/${params.id}/overview`}><button id="overview" onClick={handleClick}>OVERVIEW</button></Link>
+                            <Link to={`/${params.media}/${params.id}/cast`}><button id="cast" onClick={handleClick}>CAST</button></Link>
                             <Link to={`/${params.media}/${params.id}/videos`}><button id="videos" onClick={handleClick}>VIDEOS</button></Link>
                             <Link to={`/${params.media}/${params.id}/similars`}><button id="similars" onClick={handleClick}>SIMILARS</button></Link>
                             </div>
@@ -98,7 +121,7 @@ const Details = () => {
                 
             </TitleDetails>
 
-            {paginacion[page]}
+            {paginacion[params.details]}
         </>
     )
 
