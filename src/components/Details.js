@@ -37,26 +37,21 @@ button{
 }
 
 }
-:hover{
-    #overview, #cast, #videos, #episodes, #similars {
+a :hover{
     color:rgb(220, 221, 222);
     cursor: pointer;
-    }
-    
 }
-:focus{
-    .buttons{
-        #overview, #cast, #videos, #episodes, #similars {
-        border: none;
-        border-bottom: 2px solid rgb(220, 221, 222);
-        }
-}
+
+a :focus{
+    text-decoration:none;
+    color:rgb(220, 221, 222);
+    text-decoration: underline;
 }
 
 @media(max-width: 910px){
     .buttons{
         button{
-    margin: 5px;
+    margin: 2px;
     font-size: 13px;
         } 
     }

@@ -98,7 +98,7 @@ const SearchSection = () => {
             return(
             <Card
             img={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
-            name={result.title}
+            name={result.title ? result.title : result.original_name}
             media={result.media_type}
             id={result.id}>
             </Card>

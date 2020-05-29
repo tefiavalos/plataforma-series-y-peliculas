@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 
 const CardStyled = styled.div`
 display: flex;
-width: 250px;
+width: 280px;
+heigth: 350px;
 flex-direction: column;
 margin: 5px 0;
 .link{
@@ -16,10 +17,10 @@ margin: 5px 0;
     flex-direction: column;
     margin:0;
     .img-div {
-        flex: 6;
+        heigth: 80%;
         img {
-          width: 98%;
-          height: 98%;
+          width: 100%;
+          height: 100%;
         }
       }
       .title-div {
@@ -37,7 +38,8 @@ margin: 5px 0;
   width: 100%;
   height: auto;
   cursor: pointer;
-  transition: all 0.3s ease 0s;
+  transition: all 0.5s ease 0s;
+  transform: scale(1.05);
     }
   }
 }
@@ -62,7 +64,7 @@ const Card = ({ img, titlemedia, id, media, name, character }) => {
             <CardStyled>
                 <Link className="link" to ={`/${media}/${id}/overview`}>
                 <div className="img-div">
-                    <img src={img} />
+                    <img key={id} src={img} />
                 </div>
                 <div className="title-div">
                     <h4>{titlemedia}</h4>
