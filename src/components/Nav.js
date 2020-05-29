@@ -18,11 +18,17 @@ padding: 1% 0;
 background-color: rgb(35, 39, 42);
 .container-icons{
     width: 50%;
-    display:flex;
+    display: flex;
     justify-content: space-around;
-    .home, .movies, .tv, .search{
+    .home, .movies, .tv{
         color:rgb(220, 221, 222);
         width: 35px;
+        : hover{
+            color: #2196f3;
+        }
+        : focus{
+            color: #2196f3;
+        }
     }
     form{
         display: flex;
@@ -30,6 +36,12 @@ background-color: rgb(35, 39, 42);
         color:rgb(220, 221, 222);
         width: 35px;
         margin:0;
+        : hover{
+            color: #2196f3;
+        }
+        : focus{
+            color: #2196f3;
+        }
         }
     input{
         width:300px;
@@ -50,14 +62,14 @@ background-color: rgb(35, 39, 42);
 }
 @media(max-width: 910px){
     display:flex;
-    justify-content: flex-center;
+    justify-content: space-between;
     .container-icons{   
-        padding: 2% 0;
-        width: 90%;
+        width: 100%;
         .home, .movies, .tv, .search{
             width: 20px;
         }
     form{
+        flex-direction: row;
         .search{
             width: 20px;
         }
@@ -69,7 +81,29 @@ background-color: rgb(35, 39, 42);
     }
 }
 }
+
+@media(max-width: 375px){
+    display:flex;
+    justify-content: space-between;
+    .container-icons{   
+        width: 100%;
+        .home, .movies, .tv, .search{
+            width: 20px;
+        }
+    form{
+        flex-direction: row;
+        .search{
+            width: 20px;
+        }
+    input{
+        width: 80px;
+        height: 10px;
+        font-size: 12px;
+        padding: 5px 10px 2px 20px;
+    }
 }
+}
+
 `
 
 const SearchInput = styled.input``
