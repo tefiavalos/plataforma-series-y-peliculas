@@ -18,8 +18,8 @@ margin: 5px 0;
     .img-div {
         flex: 6;
         img {
-          width: 100%;
-          height: 100%;
+          width: 98%;
+          height: 98%;
         }
       }
       .title-div {
@@ -32,7 +32,14 @@ margin: 5px 0;
       }  
 }
 :hover{
- 
+  .img-div{
+    img{
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+    }
+  }
 }
 
 @media(max-width: 910px){
