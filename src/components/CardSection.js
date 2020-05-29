@@ -29,6 +29,7 @@ const CardSection = ({ info, cardnumber, titleall, media }) => {
                             return (
                                 <>
                                     <Card
+                                        key={element.id}
                                         media={media}
                                         id={element.id}
                                         img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}

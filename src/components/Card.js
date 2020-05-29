@@ -62,9 +62,9 @@ const Card = ({ img, titlemedia, id, media, name, character }) => {
     return (
         <>
             <CardStyled>
-                <Link className="link" to ={`/${media}/${id}/overview`}>
-                <div className="img-div">
-                    <img key={id} src={img} />
+                <Link key={id} className="link" to ={`/${media}/${id}/overview`}>
+                <div key={id} className="img-div">
+                    <img alt={`imagen de ${name}`} src={`${img}`} />
                 </div>
                 <div className="title-div">
                     <h4>{titlemedia}</h4>

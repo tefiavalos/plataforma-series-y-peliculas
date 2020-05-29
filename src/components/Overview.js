@@ -8,7 +8,10 @@ import { Instagram } from "@styled-icons/fa-brands/Instagram";
 import { LinkIcon } from "@styled-icons/fa-solid/Link";
 import { Link, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
-//si voy a la peli con un link webdepelis.com/id/ se va a ver bien?
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+
+
 const OverviewStyled = styled.div`
 
 h3{
@@ -44,6 +47,13 @@ h3{
                 }}
         }
     }
+    .MuiRating-decimal{
+        color: #2196f3;
+    }
+    .MuiBox-root-2{
+        padding: 0;
+        margin-bottom: 20px;
+    }
 }
 @media(max-width: 910px){
     .container-info{
@@ -67,7 +77,13 @@ h3{
                 }
             }
         }
-       
+    }
+    .MuiBox-root-2{
+        padding: 0;
+        margin-bottom: 10px;
+        .MuiSvgIcon-root{
+            width: 18px;
+        }
     }
 }
 `
@@ -76,23 +92,29 @@ h3{
 
 
 const Overview = ({ released, name, overview, seasons, episodes, runtime, genres, production,
-    media, runtimemovies, budget, revenue, img }) => {
+    media, runtimemovies, budget, revenue, img, vote }) => {
     const params = useParams();
     console.log(params)
     const externalLink = useFetch(`https://api.themoviedb.org/3/${params.media}/${params.id}/external_ids?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     console.log(externalLink)
-
+    const [value, setValue] = React.useState(2.5);
 
     return (
         <>
             <OverviewStyled>
-                
+
                 <div className="container-info">
                     <img src={`https://image.tmdb.org/t/p/w500${img}`} />
                     <div className="info">
                         {media == "tv" ?
                             <>
                                 <h3>{name}</h3>
+                                <div>
+                                    <Box component="fieldset" mb={3} borderColor="transparent">
+                                        <Rating name="half-rating-read" value={vote / 2} precision={0.5} readOnly />
+                                    </Box>
+
+                                </div>
                                 <p>{overview}</p>
                                 <p>Seasons: {seasons}</p>
                                 <p>Episodes: {episodes}</p>
@@ -125,13 +147,16 @@ const Overview = ({ released, name, overview, seasons, episodes, runtime, genres
                             :
                             <>
                                 <h3>{name}</h3>
+                                <Box component="fieldset" mb={3} borderColor="transparent">
+                                    <Rating name="half-rating-read" value={vote / 2} precision={0.5} readOnly />
+                                </Box>
                                 <p>{overview}</p>
                                 <p>Released: {released} </p>
                                 <p>Runtime: {runtimemovies} min.</p>
                                 <p>Genres:
                         {genres && genres.map((genre, i) => {
                                     return (
-                                        <span> {genre.name} </span>
+                                        <span key={genre.name}> {genre.name} </span>
                                     )
                                 }
                                 )

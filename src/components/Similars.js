@@ -31,6 +31,12 @@ flex-wrap: wrap;
     border-radius: 100%;
     margin: 3px;
     transition: all 0.2s ease 0s;
+    :hover{
+        background-color: rgb(168, 170, 173);
+    }
+    :focus{
+        background-color: rgb(168, 170, 173);
+    }
     }
 }
 .icon{
@@ -40,6 +46,14 @@ flex-wrap: wrap;
     margin: 0;
     color: rgb(220, 221, 222);
     cursor: pointer;
+    :hover{
+        border-radius: 48%;
+        background-color: rgb(168, 170, 173);
+        
+    }
+    :focus{
+        background-color: rgb(168, 170, 173);
+    }
 }
 @media(max-width: 910px){
     .button-section{

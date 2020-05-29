@@ -18,22 +18,24 @@ flex-direction: column;
 .imagenfondo{
     width: 100%
 }
+a{
+    text-decoration: none;
+}
 .buttons{
     display: flex;
     justify-content: center;
     width: 100%;
 button{
+    border: none;
     background-color: rgb(54, 57, 63);
     color: rgb(168, 170, 173);
     width: auto;
     margin: 20px;
     font-size: 22px;
-    border-top: 1px solid rgb(54, 57, 63);
-    border-right: 1px solid rgb(54, 57, 63);
-    border-left: 1px solid rgb(54, 57, 63);
-    border-bottom: 1px solid rgb(54, 57, 63);
     font-family: inherit;
     font-weight: bold;
+    border-color:none;
+    outline:none;
 }
 
 }
@@ -43,7 +45,6 @@ a :hover{
 }
 
 a :focus{
-    text-decoration:none;
     color:rgb(220, 221, 222);
     text-decoration: underline;
 }
@@ -57,8 +58,7 @@ a :focus{
     }
 }
 `
-const OverviewSection = styled.article`
-`
+
 
 const Details = () => {
     const params = useParams();
@@ -68,7 +68,7 @@ const Details = () => {
     }
     const media = [params.media]
     const mediaDetails = useFetch(details[media])
-    
+    console.log(mediaDetails)
     const credits = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
 
     const handleClick = e => {
@@ -91,6 +91,7 @@ const Details = () => {
             revenue={mediaDetails && mediaDetails.revenue}
             budget={mediaDetails && mediaDetails.budget}
             credits={credits}
+            vote={mediaDetails && mediaDetails.vote_average}
         />,
         videos: <Videos params={params} />,
         similars: <Similars params={params} />,

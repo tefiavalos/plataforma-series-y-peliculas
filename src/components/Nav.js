@@ -24,6 +24,13 @@ background-color: rgb(35, 39, 42);
         color:rgb(220, 221, 222);
         width: 35px;
     }
+    form{
+        display: flex;
+        .search{
+        color:rgb(220, 221, 222);
+        width: 35px;
+        margin:0;
+        }
     input{
         width:300px;
         font-size: 20px;
@@ -35,6 +42,8 @@ background-color: rgb(35, 39, 42);
     border-color: initial;
     border-image: initial;
     padding: 10px 20px 5px 40px;
+    outline-color: rgb(220, 221, 222);
+}
 }
     }
     
@@ -49,6 +58,9 @@ background-color: rgb(35, 39, 42);
             width: 20px;
         }
     form{
+        .search{
+            width: 20px;
+        }
     input{
         width: 80px;
         height: 10px;
@@ -87,8 +99,8 @@ const Nav = () => {
             <Link className='home' to='/'><Home /></Link>
             <Link className='movies' to='/movie'><Video /></Link>
             <Link className='tv' to='/tv'><Tv /></Link>
-            <Link className="search" to='/'><Search /></Link>
                 <form onSubmit={handleSubmit}>
+                <Search className="search"/>
                     <input                   type="text"
                     placeholder="Search"
                     onChange={handleChange}
