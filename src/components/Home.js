@@ -13,11 +13,11 @@ const Home = () => {
     return (
         <>
             {trendingMovies &&
-                <TrendingSection link={"movie/category/trending"} title={"Trending Movies"} info={trendingMovies.results} media={"movie"}/>
+                <TrendingSection link={"movie/category/trending/page/1"} title={"Trending Movies"} info={trendingMovies.results} media={"movie"}/>
             }
 
             {trendingTv &&
-                <TrendingSection link={"tv/category/trending"} title={"Trending Tv Show"} info={trendingTv.results} media={"tv"}/>
+                <TrendingSection link={"tv/category/trending/page/1"} title={"Trending Tv Show"} info={trendingTv.results} media={"tv"}/>
             }
 
         </>

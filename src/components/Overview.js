@@ -40,9 +40,34 @@ h3{
             a{
                 .icon{
                     color:rgb(220, 221, 222);
-                        width: 30px;
+                     width: 30px;
                 }}
         }
+    }
+}
+@media(max-width: 910px){
+    .container-info{
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        img{ 
+            display: none;
+        }
+        .info{
+            width: 90%;
+            text-align:center;
+            font-size: 12px;
+            .container-icons{
+                width: 100%;
+                margin-top: 20px;
+                a{
+                    .icon{
+                            width: 15px;
+                    }
+                }
+            }
+        }
+       
     }
 }
 `

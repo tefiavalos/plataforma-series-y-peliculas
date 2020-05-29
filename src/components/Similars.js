@@ -7,9 +7,11 @@ import { ArrowRight } from "@styled-icons/feather/ArrowRight"
 import { ArrowLeft } from "@styled-icons/feather/ArrowLeft"
 
 const SimilarsStyled = styled.article`
+.section-cards{
 display: flex;
 justify-content: space-around;
 flex-wrap: wrap;
+}
 .button-section{
     display: flex;
     justify-content: center;
@@ -39,11 +41,23 @@ flex-wrap: wrap;
     color: rgb(220, 221, 222);
     cursor: pointer;
 }
+@media(max-width: 910px){
+    .button-section{
+        button{
+        width: 20px;
+        }
+    }
+    .icon{
+        width: 15px;
+        margin: 0;
+        
+    }
+}
 `
 
 const Similars = () => {
     const params = useParams()
-    let [page, setPage] = useState([1])
+    let [page, setPage] = useState(1)
     const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
     
 
@@ -56,11 +70,11 @@ const Similars = () => {
     }
 
     const handleClickArrowRight = () =>{
-        setPage(page++)
+        setPage(page+1)
     }
 
     const handleClickArrowLeft = () =>{
-        setPage(page--)
+        setPage(page-1)
     }
 
     console.log(page)
@@ -73,6 +87,7 @@ const Similars = () => {
     const paginas = similars && similars.total_pages && cacapis();
     return (
         <SimilarsStyled>
+            <div className="section-cards">
             {similars && similars.results && similars.results.map((similar) => {
                 return (
                     <Card
@@ -83,6 +98,7 @@ const Similars = () => {
                     />
                 )
             })}
+            </div>
             <div className="button-section">
             <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
                  {paginas && paginas.map((pag, i) => {
@@ -93,7 +109,7 @@ const Similars = () => {
                 })} 
                 
                 {paginas && paginas.length > 5 && <button>...</button>}
-                {paginas && paginas.length > 5 && <button>{paginas.length}</button>}
+                {paginas && paginas.length > 5 && <button onClick={handleClick}>{paginas.length}</button>}
                 <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
                 </div>
         </SimilarsStyled>

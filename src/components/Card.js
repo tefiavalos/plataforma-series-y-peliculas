@@ -5,8 +5,8 @@ import Details from './Details'
 import { Link } from 'react-router-dom';
 
 const CardStyled = styled.div`
-width: 18%;
 display: flex;
+width: 280px;
 flex-direction: column;
 margin: 5px 0;
 .link{
@@ -32,7 +32,18 @@ margin: 5px 0;
       }  
 }
 :hover{
-  
+ 
+}
+
+@media(max-width: 910px){
+  width: 200px;
+  .link{
+    .title-div {
+      h4 {
+        font-size: 15px;
+      }
+    }
+  }
 }
 `
 

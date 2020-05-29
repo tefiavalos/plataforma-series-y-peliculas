@@ -26,7 +26,8 @@ button{
     background-color: rgb(54, 57, 63);
     color: rgb(168, 170, 173);
     width: auto;
-    margin: 20px;font-size: 22px;
+    margin: 20px;
+    font-size: 22px;
     border-top: 1px solid rgb(54, 57, 63);
     border-right: 1px solid rgb(54, 57, 63);
     border-left: 1px solid rgb(54, 57, 63);
@@ -37,12 +38,11 @@ button{
 
 }
 :hover{
-    .buttons{
     #overview, #cast, #videos, #episodes, #similars {
     color:rgb(220, 221, 222);
     cursor: pointer;
     }
-    }
+    
 }
 :focus{
     .buttons{
@@ -53,6 +53,14 @@ button{
 }
 }
 
+@media(max-width: 910px){
+    .buttons{
+        button{
+    margin: 5px;
+    font-size: 13px;
+        } 
+    }
+}
 `
 const OverviewSection = styled.article`
 `

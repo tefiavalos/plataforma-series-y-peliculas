@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ArrowRight } from "@styled-icons/feather/ArrowRight"
 
 const TrendingSectionStyled = styled.section`
-
 .title{
     display:flex;
     width: 30%;
@@ -25,6 +24,24 @@ const TrendingSectionStyled = styled.section`
             width: 30px;
         }
     }
+}
+@media(max-width: 910px){
+    .title{
+    width: 80%;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+    h3{
+        font-size: 15px;
+        margin: 5px 5px 0;
+    }
+    .link{
+        .icon{
+            width: 15px;
+            margin-top: 5px;
+        }
+    }
+}
 }
 `
 

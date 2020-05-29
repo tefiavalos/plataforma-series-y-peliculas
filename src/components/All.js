@@ -13,6 +13,13 @@ h3{
     font-weight: 300;
     margin: 45px 15px;
 }
+@media(max-width: 910px){
+    h3{
+        font-size: 20px;
+        text-align: center
+    }
+}
+
 .button-section{
     display: flex;
     justify-content: center;
@@ -42,11 +49,26 @@ h3{
     color: rgb(220, 221, 222);
     cursor: pointer;
 }
+
+@media(max-width: 910px){
+    .button-section{
+        button{
+        width: 20px;
+        }
+    }
+    .icon{
+        width: 15px;
+        margin: 0;
+        
+    }
+}
+
 `
 const All = ({ title, link }) => {
     const params = useParams();
-    let [page, setPage] = useState([1])
-
+    let [page, setPage] = useState(1)
+    const history = useHistory();
+    console.log(params)
     let urlFetch = ''
     if (params && params.media) {
         const urlPosibles = {
@@ -55,7 +77,7 @@ const All = ({ title, link }) => {
                 top_rated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
                 on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
                 airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`
+                trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
             },
             movie: {
                 popular: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
@@ -108,18 +130,20 @@ const All = ({ title, link }) => {
     console.log(allMedia && allMedia.total_pages)
     const handleClick = (e) => {
         setPage(Number(e.target.value))
-        
+        history.push(`/${params.media}/category/${params.categoria}/page/${Number(e.target.value)}`)
     }
 
     const handleClickArrowRight = () =>{
         setPage(Number(page+1))
+        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page+1)}`)
     }
 
     const handleClickArrowLeft = () =>{
         setPage(Number(page-1))
+        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page-1)}`)
     }
-//tengo que apretar dos veces para que cambie
-    
+
+
     console.log(page)
 
     const paginas = allMedia && allMedia.total_pages && cacapis();
@@ -127,14 +151,12 @@ const All = ({ title, link }) => {
 
         <>
             <AllStyled>
-                <div className="title">
                     <h3>{title}</h3>
-                </div>
                 <CardSection
                     info={allMedia && allMedia.results}
                     titleall={titleFirst + " " + titleSecond}
                     cardnumber={allMedia && allMedia.results && allMedia.results.length}
-                    link={`${params.media}/${params.categoria}/page/${page}`}
+                    link={`${link}`}
                     media={params.media}></CardSection>
                     <div className="button-section">
                     <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>

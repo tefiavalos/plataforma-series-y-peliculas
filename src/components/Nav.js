@@ -37,6 +37,26 @@ background-color: rgb(35, 39, 42);
     padding: 10px 20px 5px 40px;
 }
     }
+    
+}
+@media(max-width: 910px){
+    display:flex;
+    justify-content: flex-center;
+    .container-icons{   
+        padding: 2% 0;
+        width: 90%;
+        .home, .movies, .tv, .search{
+            width: 20px;
+        }
+    form{
+    input{
+        width: 80px;
+        height: 10px;
+        font-size: 12px;
+        padding: 5px 10px 2px 20px;
+    }
+}
+}
 }
 `
 
@@ -55,7 +75,7 @@ const Nav = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        history.push(`/search/${formSearch}`);
+        history.push(`/search/${formSearch}/page`);
         setFormSearch('')
     }
     
@@ -67,10 +87,10 @@ const Nav = () => {
             <Link className='home' to='/'><Home /></Link>
             <Link className='movies' to='/movie'><Video /></Link>
             <Link className='tv' to='/tv'><Tv /></Link>
-            <Search className="search"/>
+            <Link className="search" to='/'><Search /></Link>
                 <form onSubmit={handleSubmit}>
                     <input                   type="text"
-                    placeholder="Search for a movie or tv shows"
+                    placeholder="Search"
                     onChange={handleChange}
                     value={formSearch}
                 />

@@ -8,7 +8,7 @@ display: flex;
 justify-content: space-around;
 flex-wrap: wrap;
 .iframe{
- width: 25%;
+ width: 280px;
  margin: 10px;
  iframe{
      width:100%
@@ -21,8 +21,23 @@ flex-wrap: wrap;
     font-weight: 300;
      font-size: 15px;
  }
-}`
-//no se ven los videos pero el fecth trae la ingo
+}
+ @media(max-width: 910px){
+     .iframe{
+     width: 210px;
+     h4{
+         font-size: 15px;
+         margin: 5px 0;
+     }
+     p{
+         font-size: 10px;
+         margin: 5px 0;
+     }
+ }
+}
+`
+
+
 const Videos = () => {
     const paramsVideo= useParams()
     const videos = useFetch(`https://api.themoviedb.org/3/${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)

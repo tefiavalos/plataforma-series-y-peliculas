@@ -9,9 +9,22 @@ import { Instagram } from "@styled-icons/fa-brands/Instagram";
 
 const CastDetailsStyled = styled.article`
 display: flex;
-img{
+@media(max-width: 910px){
+    flex-direction: column;
+    align-items: center;
+}
+.img{
     width: 20%;
     margin: 30px;
+    img{
+        width: 100%;
+    }
+}
+@media(max-width: 910px){
+    .img{
+        width: 80%;
+        margin: 5px;
+    }
 }
 .info{
     width: 40%;
@@ -19,6 +32,15 @@ img{
         margin: 30px 0;
         font-size: 32px;
         font-weight: 300;
+    }
+}
+    @media(max-width: 910px){
+        .info{
+            width: 80%;
+            text-align: center;
+            h3{font-size: 20px;}
+            p{font-size: 12px;}
+        }
     }
 .container-icons{
     width: 25%;
@@ -29,8 +51,24 @@ img{
         .icon{
             color:rgb(220, 221, 222);
                 width: 30px;
-        }}
-    }`
+        }
+    }
+    }
+    @media(max-width: 910px){
+        .container-icons{
+            width: 80%;
+            display:flex;
+            margin-top: 10px;
+            justify-content: space-between;
+            a{
+                .icon{
+                        width: 15px;
+                }
+            }
+            }
+    }
+    
+    `
 
 const CastDetails = () => {
     const params = useParams();
@@ -38,8 +76,9 @@ const CastDetails = () => {
     console.log(castDetails)
     return (
         <CastDetailsStyled>
-            
+            <div className="img">
             <img src={`https://image.tmdb.org/t/p/w500${castDetails && castDetails.profile_path}`}></img>
+            </div>
             <div className="info">
             <h3>{castDetails && castDetails.name}</h3>
             <p>{castDetails && castDetails.biography}</p>
