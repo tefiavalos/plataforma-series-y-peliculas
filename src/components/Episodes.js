@@ -23,28 +23,45 @@ select{
     display:flex;
     flex-wrap: wrap;
     justify-content:space-between;
+    @media(max-width: 910px){
+        flex-direction: column;
+    }
 .card-episode{
     width:30%;
     margin: 10px;
+    @media(max-width: 910px){
+       width: 90%;
+    }
     img{
         width:100%;
     }
     h3{
         font-weight: 400;
         font-size: 18px;
+        @media(max-width: 910px){
+            font-size: 15px;
+        }
     span{
     line-height: 20px;
     margin-top: 0px;
     color: rgb(33, 150, 243);
     margin-right: 10px;
     font-weight: 400;
+    @media(max-width: 910px){
+        font-size: 15px;
+    }
     }
 }
     p{
         font-weight: 300;
+        @media(max-width: 910px){
+            font-size: 10px;
+        }
+
     }
 }
 }
+
 `
 
 
