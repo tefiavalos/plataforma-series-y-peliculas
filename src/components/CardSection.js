@@ -18,7 +18,7 @@ h3{
 const CardSection = ({ info, cardnumber, titleall, media }) => {
 
 
-   
+
     return (
         <>
             <h3>{titleall}</h3>

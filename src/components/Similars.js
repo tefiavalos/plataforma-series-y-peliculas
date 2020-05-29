@@ -73,7 +73,7 @@ const Similars = () => {
     const params = useParams()
     let [page, setPage] = useState(1)
     const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
-    
+
 
     const cacapis = () => {
         let paginacion = []
@@ -83,49 +83,50 @@ const Similars = () => {
         return paginacion
     }
 
-    const handleClickArrowRight = () =>{
-        setPage(page+1)
+    const handleClickArrowRight = () => {
+        setPage(page + 1)
     }
 
-    const handleClickArrowLeft = () =>{
-        setPage(page-1)
+    const handleClickArrowLeft = () => {
+        setPage(page - 1)
     }
 
     console.log(page)
     /* console.log(paginacion) */
     const handleClick = (e) => {
         setPage(Number(e.target.value))
-        
+
     }
-    
+
     const paginas = similars && similars.total_pages && cacapis();
     return (
         <SimilarsStyled>
             <div className="section-cards">
-            {similars && similars.results && similars.results.map((similar) => {
-                return (
-                    <Card
-                        img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
-                        titlemedia={similar.title}
-                        media={params.media}
-                        id={similar.id}
-                    />
-                )
-            })}
+                {similars && similars.results && similars.results.map((similar) => {
+                    return (
+                        <Card
+                            img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
+                            titlemedia={similar.title}
+                            media={params.media}
+                            id={similar.id}
+                        />
+                    )
+                })}
             </div>
             <div className="button-section">
-            <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
-                 {paginas && paginas.map((pag, i) => {
-                     if(i < 5){
-                    return (
-                        <button value={pag} onClick={handleClick}>{pag}</button>
-                    )}
-                })} 
-                
+                <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
+                {paginas && paginas.map((pag, i) => {
+                    if (i < 5) {
+                        return (
+                            <button value={pag} onClick={handleClick}>{pag}</button>
+                        )
+                    }
+                })}
+
                 {paginas && paginas.length > 5 && <button>...</button>}
                 {paginas && paginas.length > 5 && <button onClick={handleClick}>{paginas.length}</button>}
                 <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
-                </div>
+            </div>
         </SimilarsStyled>
     )
 }

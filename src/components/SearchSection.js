@@ -89,52 +89,53 @@ const SearchSection = () => {
     const handleClick = (e) => {
         setPage(Number(e.target.value))
         history.push(`/search/${params.busqueda}/page/${Number(e.target.value)}`)
-        
+
     }
 
-    const handleClickArrowRight = () =>{
-        setPage(Number(page+1))
-        history.push(`/search/${params.busqueda}/page/${page+1}`)
+    const handleClickArrowRight = () => {
+        setPage(Number(page + 1))
+        history.push(`/search/${params.busqueda}/page/${page + 1}`)
     }
 
-    const handleClickArrowLeft = () =>{
-        setPage(Number(page-1))
-        history.push(`/search/${params.busqueda}/page/${page-1}`)
+    const handleClickArrowLeft = () => {
+        setPage(Number(page - 1))
+        history.push(`/search/${params.busqueda}/page/${page - 1}`)
     }
-//tengo que apretar dos veces para que cambie
-    
+    //tengo que apretar dos veces para que cambie
+
     console.log(page)
 
     const paginas = busqueda && busqueda.total_pages && cacapis();
     return (
         <SearchSectionStyled>
-        {busqueda && busqueda.results.map((result) =>{
-            return(
-            <Card
-            img={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
-            name={result.title ? result.title : result.original_name}
-            media={result.media_type}
-            id={result.id}>
-            </Card>
-            )
-            
-        })}
-          <div className="button-section">
-                    <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
-                 {paginas && paginas.map((pag, i) => {
-                     if(i < 5){
-                    return (
-                        <button value={pag} onClick={handleClick}>{pag}</button>
-                    )}
-                })} 
-                
+            {busqueda && busqueda.results.map((result) => {
+                return (
+                    <Card
+                        img={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
+                        name={result.title ? result.title : result.original_name}
+                        media={result.media_type}
+                        id={result.id}>
+                    </Card>
+                )
+
+            })}
+            <div className="button-section">
+                <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
+                {paginas && paginas.map((pag, i) => {
+                    if (i < 5) {
+                        return (
+                            <button value={pag} onClick={handleClick}>{pag}</button>
+                        )
+                    }
+                })}
+
                 {paginas && paginas.length > 5 && <button>...</button>}
                 {paginas && paginas.length > 5 && <button value={paginas && paginas.length} onClick={handleClick}>{paginas.length}</button>}
                 <ArrowRight onClick={handleClickArrowRight} value={paginas && paginas.length} className="icon"></ArrowRight>
-                </div>
-         </SearchSectionStyled>
-        )
-       
+            </div>
+        </SearchSectionStyled>
+    )
+
 }
 
 export default SearchSection

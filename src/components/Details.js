@@ -97,16 +97,16 @@ const Details = () => {
         similars: <Similars params={params} />,
         episodes: <Episodes
             seasons={mediaDetails && mediaDetails.seasons} />,
-        cast: <Cast credits = {credits}/>
+        cast: <Cast credits={credits} />
     }
 
     return (
         <>
             <TitleDetails>
                 <img src={`https://image.tmdb.org/t/p/w500${mediaDetails && mediaDetails.backdrop_path}`} className="imagenfondo"></img>
-                
-                    {media == "tv" ?            
-                        <>
+
+                {media == "tv" ?
+                    <>
                         <div className="buttons">
                             <Link to={`/${params.media}/${params.id}/overview`} ><button id="overview" onClick={handleClick}>OVERVIEW</button></Link>
                             <Link to={`/${params.media}/${params.id}/cast`}><button id="cast" onClick={handleClick}>CAST</button></Link>
@@ -114,17 +114,17 @@ const Details = () => {
                             <Link to={`/${params.media}/${params.id}/episodes`}><button id="episodes" onClick={handleClick}>EPISODES</button></Link>
                             <Link to={`/${params.media}/${params.id}/similars`}><button id="similars" onClick={handleClick}>SIMILARS</button></Link>
                         </div>
-                        </>
-                        :
-                        <>
+                    </>
+                    :
+                    <>
                         <div className="buttons">
                             <Link to={`/${params.media}/${params.id}/overview`}><button id="overview" onClick={handleClick}>OVERVIEW</button></Link>
                             <Link to={`/${params.media}/${params.id}/cast`}><button id="cast" onClick={handleClick}>CAST</button></Link>
                             <Link to={`/${params.media}/${params.id}/videos`}><button id="videos" onClick={handleClick}>VIDEOS</button></Link>
                             <Link to={`/${params.media}/${params.id}/similars`}><button id="similars" onClick={handleClick}>SIMILARS</button></Link>
-                            </div>
-                        </>}
-                
+                        </div>
+                    </>}
+
             </TitleDetails>
 
             {paginacion[params.details]}

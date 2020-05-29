@@ -78,22 +78,22 @@ const Episodes = ({ seasons }) => {
                 {episodes &&
                     episodes.episodes.map(e => {
                         return (
-                            
-                                <div className="card-episode">
-                                    {
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/original${e.still_path}`}
-                                            alt={e.name} />
-                                    }
-                                    <h3>
-                                        <span>
-                                            S{e.season_number}E{e.episode_number}
-                                        </span>
-                                        {e.name}
-                                    </h3>
-                                    <p>{e.overview}</p>
-                                </div>
-                            )
+
+                            <div className="card-episode">
+                                {
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/original${e.still_path}`}
+                                        alt={e.name} />
+                                }
+                                <h3>
+                                    <span>
+                                        S{e.season_number}E{e.episode_number}
+                                    </span>
+                                    {e.name}
+                                </h3>
+                                <p>{e.overview}</p>
+                            </div>
+                        )
                     })
                 }
             </div>

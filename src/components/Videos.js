@@ -39,26 +39,26 @@ flex-wrap: wrap;
 
 
 const Videos = () => {
-    const paramsVideo= useParams()
+    const paramsVideo = useParams()
     const videos = useFetch(`https://api.themoviedb.org/3/${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     console.log(videos)
-    return(
+    return (
         <VideoStyled>
-            
+
             {videos && videos.results && videos.results.map((video) => {
-                return(
+                return (
                     <div className="iframe">
-                    <iframe
-          id="player"
-          type="text/html"
-          src={`https://www.youtube.com/embed/${video.key}`}
-        />
-                <h4>{video.name}</h4>
-                <p>{video.type}</p>
-                </div>
+                        <iframe
+                            id="player"
+                            type="text/html"
+                            src={`https://www.youtube.com/embed/${video.key}`}
+                        />
+                        <h4>{video.name}</h4>
+                        <p>{video.type}</p>
+                    </div>
                 )
             })}
-        
+
         </VideoStyled>
     )
 }

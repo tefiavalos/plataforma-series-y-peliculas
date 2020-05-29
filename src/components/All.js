@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import CardSection from './CardSection'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import CardSection from './CardSection';
 import useFetch from '../hooks/useFetch';
-import { ArrowRight } from "@styled-icons/feather/ArrowRight"
-import { ArrowLeft } from "@styled-icons/feather/ArrowLeft"
+import { ArrowRight } from "@styled-icons/feather/ArrowRight";
+import { ArrowLeft } from "@styled-icons/feather/ArrowLeft";
 
 const AllStyled = styled.section`
 h3{
@@ -135,7 +134,7 @@ const All = ({ title, link }) => {
         titleFirst = "Now Playing"
     }
 
-    
+
 
     const cacapis = () => {
         let paginacion = []
@@ -150,14 +149,14 @@ const All = ({ title, link }) => {
         history.push(`/${params.media}/category/${params.categoria}/page/${Number(e.target.value)}`)
     }
 
-    const handleClickArrowRight = () =>{
-        setPage(Number(page+1))
-        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page+1)}`)
+    const handleClickArrowRight = () => {
+        setPage(Number(page + 1))
+        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page + 1)}`)
     }
 
-    const handleClickArrowLeft = () =>{
-        setPage(Number(page-1))
-        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page-1)}`)
+    const handleClickArrowLeft = () => {
+        setPage(Number(page - 1))
+        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page - 1)}`)
     }
 
 
@@ -168,25 +167,26 @@ const All = ({ title, link }) => {
 
         <>
             <AllStyled>
-                    <h3>{title}</h3>
+                <h3>{title}</h3>
                 <CardSection
                     info={allMedia && allMedia.results}
                     titleall={titleFirst + " " + titleSecond}
                     cardnumber={allMedia && allMedia.results && allMedia.results.length}
                     link={`${link}`}
                     media={params.media}></CardSection>
-                    <div className="button-section">
+                <div className="button-section">
                     <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
-                 {paginas && paginas.map((pag, i) => {
-                     if(i < 5){
-                    return (
-                        <button value={pag} onClick={handleClick}>{pag}</button>
-                    )}
-                })} 
-                
-                {paginas && paginas.length > 5 && <button>...</button>}
-                {paginas && paginas.length > 5 && <button onClick={handleClick} value={paginas && paginas.length}>{paginas.length}</button>}
-                <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
+                    {paginas && paginas.map((pag, i) => {
+                        if (i < 5) {
+                            return (
+                                <button value={pag} onClick={handleClick}>{pag}</button>
+                            )
+                        }
+                    })}
+
+                    {paginas && paginas.length > 5 && <button>...</button>}
+                    {paginas && paginas.length > 5 && <button onClick={handleClick} value={paginas && paginas.length}>{paginas.length}</button>}
+                    <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
                 </div>
             </AllStyled>
         </>

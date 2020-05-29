@@ -77,16 +77,16 @@ const CastDetails = () => {
     return (
         <CastDetailsStyled>
             <div className="img">
-            <img src={`https://image.tmdb.org/t/p/w500${castDetails && castDetails.profile_path}`}></img>
+                <img src={`https://image.tmdb.org/t/p/w500${castDetails && castDetails.profile_path}`}></img>
             </div>
             <div className="info">
-            <h3>{castDetails && castDetails.name}</h3>
-            <p>{castDetails && castDetails.biography}</p>
-            <div className="container-icons">
-            <a href={`https://www.imdb.com/name/${castDetails&&castDetails.imdb_id}`} target="_blank"><Imdb className="icon" /></a>
+                <h3>{castDetails && castDetails.name}</h3>
+                <p>{castDetails && castDetails.biography}</p>
+                <div className="container-icons">
+                    <a href={`https://www.imdb.com/name/${castDetails && castDetails.imdb_id}`} target="_blank"><Imdb className="icon" /></a>
+                </div>
             </div>
-            </div>
-        
+
         </CastDetailsStyled>
     )
 }

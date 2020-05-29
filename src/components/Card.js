@@ -59,22 +59,22 @@ margin: 5px 0;
 
 const Card = ({ img, titlemedia, id, media, name, character }) => {
 
-    return (
-        <>
-            <CardStyled>
-                <Link key={id} className="link" to ={`/${media}/${id}/overview`}>
-                <div key={id} className="img-div">
-                    <img alt={`imagen de ${name}`} src={`${img}`} />
-                </div>
-                <div className="title-div">
-                    <h4>{titlemedia}</h4>
-                    <h4>{name}</h4>
-                    <p>{character}</p>
-                </div>
-                </Link>
-            </CardStyled>
-        </>
-    )
+  return (
+    <>
+      <CardStyled>
+        <Link key={id} className="link" to={`/${media}/${id}/overview`}>
+          <div key={id} className="img-div">
+            <img alt={`imagen de ${name}`} src={`${img}`} />
+          </div>
+          <div className="title-div">
+            <h4>{titlemedia}</h4>
+            <h4>{name}</h4>
+            <p>{character}</p>
+          </div>
+        </Link>
+      </CardStyled>
+    </>
+  )
 }
 
 export default Card

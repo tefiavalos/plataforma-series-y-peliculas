@@ -12,19 +12,19 @@ const Tv = () => {
     return (
         <>
             {popularTv &&
-                <TrendingSection link={`tv/category/popular/page/1`} title={"Popular Tv Shows"} info={popularTv.results} media={"tv"}/>
+                <TrendingSection link={`tv/category/popular/page/1`} title={"Popular Tv Shows"} info={popularTv.results} media={"tv"} />
             }
 
             {topRatedTv &&
-                <TrendingSection link={"tv/category/top_rated/page/1"} title={"Top Rated Tv Shows"} info={topRatedTv.results} media={"tv"}/>
+                <TrendingSection link={"tv/category/top_rated/page/1"} title={"Top Rated Tv Shows"} info={topRatedTv.results} media={"tv"} />
             }
 
             {currentlyAiring &&
-                <TrendingSection link={"tv/category/on_the_air/page/1"} title={"Currently Airing Tv Shows"} info={currentlyAiring.results} media={"tv"}/>
+                <TrendingSection link={"tv/category/on_the_air/page/1"} title={"Currently Airing Tv Shows"} info={currentlyAiring.results} media={"tv"} />
             }
 
             {airingToday &&
-                <TrendingSection link={"tv/category/airing_today/page/1"} title={"Airing Today Tv Shows"} info={airingToday.results} media={"tv"}/>
+                <TrendingSection link={"tv/category/airing_today/page/1"} title={"Airing Today Tv Shows"} info={airingToday.results} media={"tv"} />
             }
         </>
     )

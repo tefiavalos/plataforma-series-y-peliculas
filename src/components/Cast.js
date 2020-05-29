@@ -10,26 +10,26 @@ flex-wrap: wrap;
 justify-content: space-around;
 `
 
-const Cast = (credits) =>{
-    
+const Cast = (credits) => {
+
     const params = useParams()
     console.log(params)
-    return(
-        
-    <CastStyled>
-     {credits && credits.credits && credits.credits.cast.map((credit) => {
-        return(
-           <Card
-           img={`https://image.tmdb.org/t/p/w500${credit.profile_path}`}
-           name={credit.name}
-           character={credit.character}
-           media={"person"}
-           id={credit.id}
-           >
-           </Card>
-        )
-    }) }
-    </CastStyled>
+    return (
+
+        <CastStyled>
+            {credits && credits.credits && credits.credits.cast.map((credit) => {
+                return (
+                    <Card
+                        img={`https://image.tmdb.org/t/p/w500${credit.profile_path}`}
+                        name={credit.name}
+                        character={credit.character}
+                        media={"person"}
+                        id={credit.id}
+                    >
+                    </Card>
+                )
+            })}
+        </CastStyled>
     )
 }
 

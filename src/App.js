@@ -33,7 +33,7 @@ const App = () => {
         <Route exact path="/:media/:id/" component={Details}></Route>
         <Route exact path="/:media/:id/:details" component={Details}></Route>
         <Route exact path="/:media/:id/overview" component={Details}></Route>
-     
+
       </Switch>
 
 

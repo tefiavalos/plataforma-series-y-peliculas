@@ -75,10 +75,10 @@ background-color: rgb(35, 39, 42);
 const SearchInput = styled.input``
 
 const Nav = () => {
-    
+
     const history = useHistory();
     const [formSearch, setFormSearch] = useState('');
-    
+
 
 
     const handleChange = (e) => {
@@ -90,24 +90,24 @@ const Nav = () => {
         history.push(`/search/${formSearch}/page`);
         setFormSearch('')
     }
-    
-  
+
+
 
     return (
         <NavStyled>
             <div className="container-icons">
-            <Link className='home' to='/'><Home /></Link>
-            <Link className='movies' to='/movie'><Video /></Link>
-            <Link className='tv' to='/tv'><Tv /></Link>
+                <Link className='home' to='/'><Home /></Link>
+                <Link className='movies' to='/movie'><Video /></Link>
+                <Link className='tv' to='/tv'><Tv /></Link>
                 <form onSubmit={handleSubmit}>
-                <Search className="search"/>
-                    <input                   type="text"
-                    placeholder="Search"
-                    onChange={handleChange}
-                    value={formSearch}
-                />
-        </form>
-        </div>
+                    <Search className="search" />
+                    <input type="text"
+                        placeholder="Search"
+                        onChange={handleChange}
+                        value={formSearch}
+                    />
+                </form>
+            </div>
         </NavStyled>
 
     )

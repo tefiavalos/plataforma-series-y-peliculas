@@ -56,10 +56,10 @@ const TrendingSection = ({ info, title, link, media }) => {
                     <Link
                         className="link"
                         to={link}>
-                            <ArrowRight className="icon" />
+                        <ArrowRight className="icon" />
                     </Link>
                 </div>
-                <CardSection key={title} 
+                <CardSection key={title}
                     info={info}
                     link={link}
                     cardnumber={5}
