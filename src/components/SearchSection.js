@@ -45,6 +45,7 @@ justify-content: space-around;
     color: rgb(220, 221, 222);
     cursor: pointer;
     :hover{
+        width: 40px;
         border-radius: 48%;
         background-color: rgb(168, 170, 173);
         
@@ -58,11 +59,23 @@ justify-content: space-around;
     .button-section{
         button{
         width: 20px;
+        :hover{
+            width:20px;
+            height: 20px;
+        }
+        :focus{
+            width:20px;
+            height: 20px;
+        }
         }
     }
     .icon{
         width: 15px;
         margin: 0;
+        :hover{
+            width:20px;
+            height: 20px;
+        }
         
     }
 }
