@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 const CardStyled = styled.div`
 display: flex;
-width: 280px;
+width: 250px;
 flex-direction: column;
 margin: 5px 0;
 .link{
