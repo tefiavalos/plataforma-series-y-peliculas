@@ -87,6 +87,7 @@ background-color: rgb(35, 39, 42);
     justify-content: space-between;
     .container-icons{   
         width: 100%;
+        margin: 5px 0;
         .home, .movies, .tv, .search{
             width: 20px;
         }

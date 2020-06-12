@@ -123,7 +123,7 @@ const Similars = () => {
                     return (
                         <Card
                             img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
-                            titlemedia={similar.title}
+                            titlemedia={similar.title ? similar.title : similar.original_name}
                             media={params.media}
                             id={similar.id}
                         />
