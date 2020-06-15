@@ -60,9 +60,11 @@ margin: 5px 0;
 const Card = ({ img, titlemedia, id, media, name, character }) => {
 
   return (
+        // No es necesario este fragemnto aqui
     <>
       <CardStyled>
         <Link key={id} className="link" to={`/${media}/${id}/overview`}>
+        {/* privilegia nombres descriptivos como img-container antes que usar el tag de html  */}
           <div key={id} className="img-div">
             <img alt={`imagen de ${name}`} src={`${img}`} />
           </div>

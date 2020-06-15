@@ -73,6 +73,7 @@ display: flex;
 const CastDetails = () => {
     const params = useParams();
     const castDetails = useFetch(`https://api.themoviedb.org/3/person/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+    // ಠ_ಠ
     console.log(castDetails)
     return (
         <CastDetailsStyled>

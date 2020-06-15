@@ -107,7 +107,7 @@ const Similars = () => {
     const handleClickArrowLeft = () => {
         setPage(page - 1)
     }
-
+        // ಠ_ಠ 
     console.log(page)
     /* console.log(paginacion) */
     const handleClick = (e) => {
@@ -123,6 +123,7 @@ const Similars = () => {
                     return (
                         <Card
                             img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
+                            // tendrias que pasarle una imagen default a Card, porque cuando no hay tira error en la consola
                             titlemedia={similar.title}
                             media={params.media}
                             id={similar.id}

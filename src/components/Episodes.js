@@ -72,7 +72,7 @@ const Episodes = ({ seasons }) => {
 
     const episodes = useFetch(`https://api.themoviedb.org/3/tv/${[params.id]}/season/${seasonNumber}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
 
-
+    // ಠ_ಠ
     console.log(seasons)
     console.log(seasonNumber)
     console.log(episodes)

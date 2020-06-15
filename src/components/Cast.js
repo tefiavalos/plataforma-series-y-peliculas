@@ -13,6 +13,7 @@ justify-content: space-around;
 const Cast = (credits) => {
 
     const params = useParams()
+        // ಠ_ಠ
     console.log(params)
     return (
 

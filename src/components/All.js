@@ -92,6 +92,7 @@ const All = ({ title, link }) => {
     const params = useParams();
     let [page, setPage] = useState(1)
     const history = useHistory();
+        // ಠ_ಠ
     console.log(params)
     let urlFetch = ''
     if (params && params.media) {
@@ -116,6 +117,11 @@ const All = ({ title, link }) => {
 
     }
     const allMedia = useFetch(urlFetch);
+
+      // Esta bien usado este if/else, aunque la ultima convencion en React es usar un objeto para estos casos. 
+  // Podes leer sobre el tema aqui: 
+  // https://ultimatecourses.com/blog/deprecating-the-switch-statement-for-object-literals
+
 
     let titleSecond = params.media == "tv" ? "TV Shows" : "Movies";
     let titleFirst = ""
@@ -151,6 +157,7 @@ const All = ({ title, link }) => {
         }
         return paginacion
     }
+        // ಠ_ಠ
     console.log(allMedia && allMedia.total_pages)
     const handleClick = (e) => {
         setPage(Number(e.target.value))
@@ -167,7 +174,7 @@ const All = ({ title, link }) => {
         history.push(`/${params.media}/category/${params.categoria}/page/${Number(page - 1)}`)
     }
 
-
+    // ಠ_ಠ
     console.log(page)
 
     const paginas = allMedia && allMedia.total_pages && cacapis();

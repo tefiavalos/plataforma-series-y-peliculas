@@ -1,10 +1,17 @@
+// no usamos usestate ni useeffect - no tendriamos que importarlos
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+// siempre termina las sentencias con un ;
 import CardSection from './CardSection'
+// no usamos router, no tendriamos que importarlo
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// trata de mantener un estilo consistente en las comillas: siempre dobles o siempre simples. 
+// la convencion es simples en todo lo que es javascript, dobles en el HTML o en el JSX 
 import { ArrowRight } from "@styled-icons/feather/ArrowRight"
 
+// ojo al tabulado aca que tiene algunas desprolijidades
+// siempre deja un espacio entre el nombre de la clase y la llave de apertura {
 const TrendingSectionStyled = styled.section`
 .title{
     display:flex;
