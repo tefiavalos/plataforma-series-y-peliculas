@@ -90,13 +90,17 @@ h3{
 
 
 
-
+// atencion al tabulado en este componente, esta muy desprolijo
+// y al camelCase en los nombres
 const Overview = ({ released, name, overview, seasons, episodes, runtime, genres, production,
     media, runtimemovies, budget, revenue, img, vote }) => {
     const params = useParams();
+        // ಠ_ಠ
     console.log(params)
-    const externalLink = useFetch(`https://api.themoviedb.org/3/${params.media}/${params.id}/external_ids?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    console.log(externalLink)
+    const externalLink = useFetch(`https://api.themoviedb.org/3/${params.media}/${params.id}/external_ids?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`)
+   
+     // ಠ_ಠ
+     console.log(externalLink)
     const [value, setValue] = React.useState(2.5);
 
     return (

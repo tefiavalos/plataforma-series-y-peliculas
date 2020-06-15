@@ -63,15 +63,17 @@ a :focus{
 const Details = () => {
     const params = useParams();
     const details = {
-        movie: `https://api.themoviedb.org/3/movie/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
-        tv: `https://api.themoviedb.org/3/tv/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+        movie: `https://api.themoviedb.org/3/movie/${[params.id]}?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`,
+        tv: `https://api.themoviedb.org/3/tv/${[params.id]}?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`
     }
     const media = [params.media]
     const mediaDetails = useFetch(details[media])
+        // ಠ_ಠ
     console.log(mediaDetails)
-    const credits = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
+    const credits = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/credits?api_key=6a93319b2d78795675b8bd9aa0965a95`)
 
     const handleClick = e => {
+        // no entiendo esta funcion, no parece hacer nada 
         const click = e.target.id
     }
 
@@ -106,8 +108,16 @@ const Details = () => {
                 <img src={`https://image.tmdb.org/t/p/w500${mediaDetails && mediaDetails.backdrop_path}`} className="imagenfondo"></img>
 
                 {media == "tv" ?
+                        // No es necesario el react fragment aqui 
                     <>
                         <div className="buttons">
+               {/* trata de acomodar este codigo para no tener un scroll horizontal: es molesto para quien lo lee
+            la convencion en React es, si son muchos componentes, dejar una nueva linea y tab
+              <Link to={`/${params.media}/${params.id}/overview`}>
+                <button id="overview" onClick={handleClick}>
+                  OVERVIEW
+                </button>
+              </Link> */}
                             <Link to={`/${params.media}/${params.id}/overview`} ><button id="overview" onClick={handleClick}>OVERVIEW</button></Link>
                             <Link to={`/${params.media}/${params.id}/cast`}><button id="cast" onClick={handleClick}>CAST</button></Link>
                             <Link to={`/${params.media}/${params.id}/videos`}><button id="videos" onClick={handleClick}>VIDEOS</button></Link>
@@ -126,7 +136,7 @@ const Details = () => {
                     </>}
 
             </TitleDetails>
-
+{/* me gusta mucho como resolviste esto!! */}
             {paginacion[params.details]}
         </>
     )

@@ -92,23 +92,24 @@ const All = ({ title, link }) => {
     const params = useParams();
     let [page, setPage] = useState(1)
     const history = useHistory();
+        // ಠ_ಠ
     console.log(params)
     let urlFetch = ''
     if (params && params.media) {
         const urlPosibles = {
             tv: {
-                popular: `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                top_rated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
+                popular: `https://api.themoviedb.org/3/tv/popular?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                top_rated: `https://api.themoviedb.org/3/tv/top_rated?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`
             },
             movie: {
-                popular: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                top_rated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                now_playing: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
+                popular: `https://api.themoviedb.org/3/movie/popular?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                top_rated: `https://api.themoviedb.org/3/movie/top_rated?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                now_playing: `https://api.themoviedb.org/3/movie/now_playing?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`,
+                trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`
             },
         }
         const mediaObject = urlPosibles[params.media]
@@ -116,6 +117,11 @@ const All = ({ title, link }) => {
 
     }
     const allMedia = useFetch(urlFetch);
+
+      // Esta bien usado este if/else, aunque la ultima convencion en React es usar un objeto para estos casos. 
+  // Podes leer sobre el tema aqui: 
+  // https://ultimatecourses.com/blog/deprecating-the-switch-statement-for-object-literals
+
 
     let titleSecond = params.media == "tv" ? "TV Shows" : "Movies";
     let titleFirst = ""
@@ -151,6 +157,7 @@ const All = ({ title, link }) => {
         }
         return paginacion
     }
+        // ಠ_ಠ
     console.log(allMedia && allMedia.total_pages)
     const handleClick = (e) => {
         setPage(Number(e.target.value))
@@ -167,7 +174,7 @@ const All = ({ title, link }) => {
         history.push(`/${params.media}/category/${params.categoria}/page/${Number(page - 1)}`)
     }
 
-
+    // ಠ_ಠ
     console.log(page)
 
     const paginas = allMedia && allMedia.total_pages && cacapis();

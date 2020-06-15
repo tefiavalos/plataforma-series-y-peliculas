@@ -14,10 +14,8 @@ h3{
 }
 `
 
-
+// trata de respetar la convencion camelCase para tus nombres de variables: cardNumber, titleAll
 const CardSection = ({ info, cardnumber, titleall, media }) => {
-
-
 
     return (
         <>
@@ -27,6 +25,8 @@ const CardSection = ({ info, cardnumber, titleall, media }) => {
                     info.map((element, i) => {
                         if (i < cardnumber) {
                             return (
+                                // No es necesario react fragment aqui. 
+                                // Solo es necesario cuando hay mas de un tag sin un padre en comun. 
                                 <>
                                     <Card
                                         key={element.id}

@@ -89,7 +89,7 @@ flex-wrap: wrap;
 const Similars = () => {
     const params = useParams()
     let [page, setPage] = useState(1)
-    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
+    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`)
 
 
     const cacapis = () => {
@@ -107,7 +107,7 @@ const Similars = () => {
     const handleClickArrowLeft = () => {
         setPage(page - 1)
     }
-
+        // ಠ_ಠ 
     console.log(page)
     /* console.log(paginacion) */
     const handleClick = (e) => {
@@ -123,6 +123,7 @@ const Similars = () => {
                     return (
                         <Card
                             img={`https://image.tmdb.org/t/p/w500${similar.poster_path}`} //y si no hay?
+                            // tendrias que pasarle una imagen default a Card, porque cuando no hay tira error en la consola
                             titlemedia={similar.title}
                             media={params.media}
                             id={similar.id}

@@ -1,4 +1,5 @@
 import React from 'react';
+// aca hay muchas cosas que se importan pero no se usan: deberian sacarse. 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Nav from './components/Nav';
 import TrendingSection from './components/TrendingSection';
@@ -12,6 +13,7 @@ import Details from './components/Details';
 import Videos from './components/Videos';
 import Overview from './components/Overview';
 import SearchSection from './components/SearchSection';
+// No estamos usando App.css ni index.css, asi que habria que borrarlos - como minimo no importarlos. 
 import './App.css';
 import CastDetails from './components/CastDetails';
 
