@@ -5,8 +5,8 @@ import useFetch from '../hooks/useFetch';
 
 const Home = () => {
 
-    const trendingMovies = useFetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=6a93319b2d78795675b8bd9aa0965a95`);
-    const trendingTv = useFetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=6a93319b2d78795675b8bd9aa0965a95`);
+    const trendingMovies = useFetch(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}`);
+    const trendingTv = useFetch(`https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}`);
 
 
 

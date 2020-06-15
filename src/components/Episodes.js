@@ -70,7 +70,7 @@ const Episodes = ({ seasons }) => {
     const history = useHistory();
     const [seasonNumber, setSeasonNumber] = useState(1);
 
-    const episodes = useFetch(`https://api.themoviedb.org/3/tv/${[params.id]}/season/${seasonNumber}?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`)
+    const episodes = useFetch(`https://api.themoviedb.org/3/tv/${[params.id]}/season/${seasonNumber}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
 
     // ಠ_ಠ
     console.log(seasons)

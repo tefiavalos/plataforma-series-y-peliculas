@@ -88,7 +88,7 @@ const SearchSection = () => {
     console.log(params, "Params")
     let [page, setPage] = useState(1)
     const busqueda = useFetch(`
-    https://api.themoviedb.org/3/search/multi?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&query=${params.busqueda}&page=${page}&include_adult=true`)
+    https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${params.busqueda}&page=${page}&include_adult=true`)
            // ಠ_ಠ ಠ_ಠ ಠ_ಠ ಠ_ಠ 
     console.log(busqueda)
 

@@ -89,7 +89,7 @@ flex-wrap: wrap;
 const Similars = () => {
     const params = useParams()
     let [page, setPage] = useState(1)
-    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=${page}`)
+    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
 
 
     const cacapis = () => {

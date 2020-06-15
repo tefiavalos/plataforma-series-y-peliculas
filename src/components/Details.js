@@ -63,14 +63,14 @@ a :focus{
 const Details = () => {
     const params = useParams();
     const details = {
-        movie: `https://api.themoviedb.org/3/movie/${[params.id]}?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`,
-        tv: `https://api.themoviedb.org/3/tv/${[params.id]}?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`
+        movie: `https://api.themoviedb.org/3/movie/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+        tv: `https://api.themoviedb.org/3/tv/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     }
     const media = [params.media]
     const mediaDetails = useFetch(details[media])
         // ಠ_ಠ
     console.log(mediaDetails)
-    const credits = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/credits?api_key=6a93319b2d78795675b8bd9aa0965a95`)
+    const credits = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/credits?api_key=${process.env.REACT_APP_API_KEY}`)
 
     const handleClick = e => {
         // no entiendo esta funcion, no parece hacer nada 

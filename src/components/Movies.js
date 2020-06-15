@@ -6,10 +6,10 @@ import CardSection from './CardSection';
 
 const Movies = () => {
 
-    const popularMovies = useFetch(`https://api.themoviedb.org/3/movie/popular?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=1`);
-    const topRatedMovies = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=1`);
-    const upcomingMovies = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=1`)
-    const nowPlayingMovies = useFetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US&page=1`)
+    const popularMovies = useFetch(`https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const topRatedMovies = useFetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`);
+    const upcomingMovies = useFetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
+    const nowPlayingMovies = useFetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
     return (
 
         <>

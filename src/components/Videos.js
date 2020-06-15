@@ -40,7 +40,7 @@ flex-wrap: wrap;
 
 const Videos = () => {
     const paramsVideo = useParams()
-    const videos = useFetch(`https://api.themoviedb.org/3/${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=6a93319b2d78795675b8bd9aa0965a95&language=en-US`)
+    const videos = useFetch(`https://api.themoviedb.org/3/${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
             // ಠ_ಠ 
     console.log(videos)
     return (
