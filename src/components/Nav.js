@@ -63,17 +63,17 @@ background-color: rgb(35, 39, 42);
     .container-icons{   
         width: 100%;
         .home, .movies, .tv, .search{
-            width: 20px;
+            width: 30px;
         }
     form{
         flex-direction: row;
         .search{
-            width: 20px;
+            width: 30px;
         }
     input{
-        width: 80px;
+        width: 100px;
         height: 10px;
-        font-size: 12px;
+        font-size: 15px;
         padding: 5px 10px 2px 20px;
     }
 }
@@ -86,17 +86,17 @@ background-color: rgb(35, 39, 42);
         width: 100%;
         margin: 5px 0;
         .home, .movies, .tv, .search{
-            width: 20px;
+            width: 25px;
         }
     form{
         flex-direction: row;
         .search{
-            width: 20px;
+            width: 25px;
         }
     input{
-        width: 80px;
+        width: 90px;
         height: 10px;
-        font-size: 12px;
+        font-size: 15px;
         padding: 5px 10px 2px 20px;
     }
 }
