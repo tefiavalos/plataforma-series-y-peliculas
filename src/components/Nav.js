@@ -72,7 +72,7 @@ background-color: rgb(35, 39, 42);
         }
     input{
         width: 100px;
-        height: 10px;
+        height: 20px;
         font-size: 15px;
         padding: 5px 10px 2px 20px;
     }
@@ -95,7 +95,7 @@ background-color: rgb(35, 39, 42);
         }
     input{
         width: 90px;
-        height: 10px;
+        height: 20px;
         font-size: 15px;
         padding: 5px 10px 2px 20px;
     }
