@@ -26,13 +26,14 @@ const TrendingSectionStyled = styled.section`
 }
 @media(max-width: 910px){
     .title {
-    width: 80%;
+    width: 100%;
     margin-top: 15px;
     justify-content: center;
     align-items: center;
     h3 {
+        text-align: center;
         font-size: 25px;
-        margin: 5px 5px 0;
+        margin: 5px 5px 0 0;
     }
     .link {
         .icon {
