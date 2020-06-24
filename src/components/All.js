@@ -15,7 +15,7 @@ h3{
 }
 @media(max-width: 910px){
     h3{
-        font-size: 20px;
+        font-size: 25px;
         text-align: center
     }
 }
@@ -158,7 +158,8 @@ const All = ({ title, link }) => {
                     titleall={mediaTitle}
                     cardnumber={allMedia && allMedia.results && allMedia.results.length}
                     link={`${link}`}
-                    media={params.media}></CardSection>
+                    media={params.media}>
+                </CardSection>
                 <div className="button-section">
                     <Pagination
                         sectionPagination={allMedia}
@@ -166,7 +167,8 @@ const All = ({ title, link }) => {
                         page={page}
                         setPage={setPage}
                         history={history}
-                        variableRuteo={"all"}></Pagination>
+                        variableRuteo={"all"}>
+                    </Pagination>
                 </div>
             </AllStyled>
         </>

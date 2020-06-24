@@ -31,7 +31,7 @@ const TrendingSectionStyled = styled.section`
     justify-content: center;
     align-items: center;
     h3 {
-        font-size: 15px;
+        font-size: 25px;
         margin: 5px 5px 0;
     }
     .link {
