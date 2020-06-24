@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Home } from '@styled-icons/feather/Home'
 import { Video } from '@styled-icons/feather/Video'
 import { Tv } from '@styled-icons/feather/Tv'
 import { Search } from '@styled-icons/feather/Search'
-import SearchSection from './SearchSection'
-import useFetch from '../hooks/useFetch';
-
 
 
 const NavStyled = styled.nav`
@@ -106,8 +103,6 @@ background-color: rgb(35, 39, 42);
 }
 
 `
-
-const SearchInput = styled.input``
 
 const Nav = () => {
 

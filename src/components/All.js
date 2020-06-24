@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useParams, useHistory } from 'react-router-dom';
 import CardSection from './CardSection';
 import useFetch from '../hooks/useFetch';
-import { ArrowRight } from "@styled-icons/feather/ArrowRight";
-import { ArrowLeft } from "@styled-icons/feather/ArrowLeft";
+import Pagination from './Pagination';
+import API_URL from '../assets/constants'
+import notAvailable from '../assets/img-not-available.png'
 
 const AllStyled = styled.section`
 h3{
@@ -92,85 +93,61 @@ const All = ({ title, link }) => {
     const params = useParams();
     let [page, setPage] = useState(1)
     const history = useHistory();
-    console.log(params)
-    let urlFetch = ''
+    let mediaObject = ''
+    let mediaTitle = ''
     if (params && params.media) {
         const urlPosibles = {
             tv: {
-                popular: `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                top_rated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                trending: `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
+                popular: {
+                    link: `${API_URL}tv/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: `Popular TV Shows`
+                },
+                top_rated: {
+                    link: `${API_URL}tv/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Top Rated TV Shows"
+                },
+                on_the_air: {
+                    link: `${API_URL}tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "On The Air TV Shows"
+                },
+                airing_today: {
+                    link: `${API_URL}tv/airing_today?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Airing Today TV Shows"
+                },
+                trending: {
+                    link: `${API_URL}trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Trending TV Shows"
+                },
             },
             movie: {
-                popular: `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                top_rated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                now_playing: `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
-                trending: `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`
+                popular: {
+                    link: `${API_URL}movie/popular?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Popular Movies"
+                },
+                top_rated: {
+                    link: `${API_URL}movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Top Rated Movies"
+                },
+                upcoming: {
+                    link: `${API_URL}movie/upcoming?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Upcoming Movies"
+                },
+                now_playing: {
+                    link: `${API_URL}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Now Playing Movies"
+                },
+                trending: {
+                    link: `${API_URL}trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`,
+                    title: "Trending Movies"
+                }
             },
         }
-        const mediaObject = urlPosibles[params.media]
-        urlFetch = mediaObject[params.categoria]
-
-    }
-    const allMedia = useFetch(urlFetch);
-
-    let titleSecond = params.media == "tv" ? "TV Shows" : "Movies";
-    let titleFirst = ""
-    //los titulos van a estar en el objeto
-    if (params.categoria == "popular") {
-        titleFirst = "Popular"
-    }
-    else if (params.categoria == "top_rated") {
-        titleFirst = "Top Rated"
-    }
-    else if (params.categoria == "on_the_air") {
-        titleFirst = "On The Air"
-    }
-    else if (params.categoria == "airing_today") {
-        titleFirst = "Airing Today"
-    }
-    else if (params.categoria == "trending") {
-        titleFirst = "Trending"
-    }
-    else if (params.categoria == "upcoming") {
-        titleFirst = "Up Coming"
-    }
-    else if (params.categoria == "now_playing") {
-        titleFirst = "Now Playing"
+        mediaObject = urlPosibles[params.media][params.categoria].link
+        mediaTitle = urlPosibles[params.media][params.categoria].title
     }
 
+    const allMedia = useFetch(mediaObject)
 
-
-    const cacapis = () => {
-        let paginacion = []
-        for (let i = 1; i <= allMedia.total_pages; i++) {
-            paginacion.push(i)
-        }
-        return paginacion
-    }
-    console.log(allMedia && allMedia.total_pages)
-    const handleClick = (e) => {
-        setPage(Number(e.target.value))
-        history.push(`/${params.media}/category/${params.categoria}/page/${Number(e.target.value)}`)
-    }
-
-    const handleClickArrowRight = () => {
-        setPage(Number(page + 1))
-        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page + 1)}`)
-    }
-
-    const handleClickArrowLeft = () => {
-        setPage(Number(page - 1))
-        history.push(`/${params.media}/category/${params.categoria}/page/${Number(page - 1)}`)
-    }
-
-
-    console.log(page)
-
-    const paginas = allMedia && allMedia.total_pages && cacapis();
     return (
 
         <>
@@ -178,23 +155,18 @@ const All = ({ title, link }) => {
                 <h3>{title}</h3>
                 <CardSection
                     info={allMedia && allMedia.results}
-                    titleall={titleFirst + " " + titleSecond}
+                    titleall={mediaTitle}
                     cardnumber={allMedia && allMedia.results && allMedia.results.length}
                     link={`${link}`}
                     media={params.media}></CardSection>
                 <div className="button-section">
-                    <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
-                    {paginas && paginas.map((pag, i) => {
-                        if (i < 5) {
-                            return (
-                                <button value={pag} onClick={handleClick}>{pag}</button>
-                            )
-                        }
-                    })}
-
-                    {paginas && paginas.length > 5 && <button>...</button>}
-                    {paginas && paginas.length > 5 && <button onClick={handleClick} value={paginas && paginas.length}>{paginas.length}</button>}
-                    <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
+                    <Pagination
+                        sectionPagination={allMedia}
+                        params={params}
+                        page={page}
+                        setPage={setPage}
+                        history={history}
+                        variableRuteo={"all"}></Pagination>
                 </div>
             </AllStyled>
         </>

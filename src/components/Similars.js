@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
 import Card from './Card';
-import { ArrowRight } from "@styled-icons/feather/ArrowRight"
-import { ArrowLeft } from "@styled-icons/feather/ArrowLeft"
+import Pagination from './Pagination';
+import API_URL from '../assets/constants';
 
 const SimilarsStyled = styled.article`
 .section-cards{
@@ -89,33 +89,11 @@ flex-wrap: wrap;
 const Similars = () => {
     const params = useParams()
     let [page, setPage] = useState(1)
-    const similars = useFetch(`https://api.themoviedb.org/3/${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
+    const similars = useFetch(`
+    ${API_URL}${[params.media]}/${[params.id]}/recommendations?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=${page}`)
 
 
-    const cacapis = () => {
-        let paginacion = []
-        for (let i = 1; i <= similars.total_pages; i++) {
-            paginacion.push(i)
-        }
-        return paginacion
-    }
 
-    const handleClickArrowRight = () => {
-        setPage(page + 1)
-    }
-
-    const handleClickArrowLeft = () => {
-        setPage(page - 1)
-    }
-
-    console.log(page)
-    /* console.log(paginacion) */
-    const handleClick = (e) => {
-        setPage(Number(e.target.value))
-
-    }
-
-    const paginas = similars && similars.total_pages && cacapis();
     return (
         <SimilarsStyled>
             <div className="section-cards">
@@ -130,20 +108,12 @@ const Similars = () => {
                     )
                 })}
             </div>
-            <div className="button-section">
-                <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
-                {paginas && paginas.map((pag, i) => {
-                    if (i < 5) {
-                        return (
-                            <button value={pag} onClick={handleClick}>{pag}</button>
-                        )
-                    }
-                })}
-
-                {paginas && paginas.length > 5 && <button>...</button>}
-                {paginas && paginas.length > 5 && <button onClick={handleClick}>{paginas.length}</button>}
-                <ArrowRight onClick={handleClickArrowRight} className="icon"></ArrowRight>
-            </div>
+            <Pagination
+                sectionPagination={similars}
+                params={params}
+                page={page}
+                setPage={setPage}
+                variableRuteo={"similars"}></Pagination>
         </SimilarsStyled>
     )
 }

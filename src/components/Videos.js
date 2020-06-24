@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
 import { useParams } from 'react-router-dom';
+import API_URL from '../assets/constants';
 
 const VideoStyled = styled.article`
 display: flex;
@@ -40,8 +41,8 @@ flex-wrap: wrap;
 
 const Videos = () => {
     const paramsVideo = useParams()
-    const videos = useFetch(`https://api.themoviedb.org/3/${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    console.log(videos)
+    const videos = useFetch(`${API_URL}${[paramsVideo.media]}/${[paramsVideo.id]}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+
     return (
         <VideoStyled>
 
@@ -52,6 +53,7 @@ const Videos = () => {
                             id="player"
                             type="text/html"
                             src={`https://www.youtube.com/embed/${video.key}`}
+                            title={video.title}
                         />
                         <h4>{video.name}</h4>
                         <p>{video.type}</p>

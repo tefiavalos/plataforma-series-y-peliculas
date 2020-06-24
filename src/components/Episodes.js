@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import API_URL from '../assets/constants';
 
 const EpisodesStyled = styled.article`
 select{
@@ -70,12 +71,7 @@ const Episodes = ({ seasons }) => {
     const history = useHistory();
     const [seasonNumber, setSeasonNumber] = useState(1);
 
-    const episodes = useFetch(`https://api.themoviedb.org/3/tv/${[params.id]}/season/${seasonNumber}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-
-
-    console.log(seasons)
-    console.log(seasonNumber)
-    console.log(episodes)
+    const episodes = useFetch(`${API_URL}tv/${[params.id]}/season/${seasonNumber}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
 
     const handleChange = (e) => {
         setSeasonNumber(Number(e.target.value));

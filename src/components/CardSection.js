@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Card from './Card'
-import useFetch from '../hooks/useFetch';
+import Card from './Card';
+import notAvailable from '../assets/img-not-available.png'
 
 const CardSectionStyled = styled.section`
 width: 100%;
@@ -27,15 +27,16 @@ const CardSection = ({ info, cardnumber, titleall, media }) => {
                     info.map((element, i) => {
                         if (i < cardnumber) {
                             return (
-                                <>
+                                <div key={element.id}>
                                     <Card
-                                        key={element.id}
                                         media={media}
                                         id={element.id}
-                                        img={`https://image.tmdb.org/t/p/w500${element.poster_path}`}
+                                        img={element.poster_path !== undefined && element.poster_path !== null ?
+                                            `https://image.tmdb.org/t/p/w500${element.poster_path}` :
+                                            `${notAvailable}`}
                                         titlemedia={element.original_name ? element.original_name : element.title}
                                     />
-                                </>
+                                </div>
                             )
                         }
                     })

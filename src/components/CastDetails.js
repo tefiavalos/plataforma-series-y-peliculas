@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { Imdb } from "@styled-icons/fa-brands/Imdb";
-import { FacebookSquare } from "@styled-icons/fa-brands/FacebookSquare";
-import { Twitter } from "@styled-icons/fa-brands/Twitter";
-import { Instagram } from "@styled-icons/fa-brands/Instagram";
+import API_URL from '../assets/constants'
 
 const CastDetailsStyled = styled.article`
 display: flex;
@@ -72,18 +70,24 @@ display: flex;
 
 const CastDetails = () => {
     const params = useParams();
-    const castDetails = useFetch(`https://api.themoviedb.org/3/person/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    console.log(castDetails)
+    const castDetails = useFetch(`
+    ${API_URL}person/${[params.id]}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
+
     return (
         <CastDetailsStyled>
             <div className="img">
-                <img src={`https://image.tmdb.org/t/p/w500${castDetails && castDetails.profile_path}`}></img>
+                <img 
+                src={`https://image.tmdb.org/t/p/w500${castDetails && castDetails.profile_path}`}
+                alt={`${castDetails && castDetails.name}`}></img>
             </div>
             <div className="info">
                 <h3>{castDetails && castDetails.name}</h3>
                 <p>{castDetails && castDetails.biography}</p>
                 <div className="container-icons">
-                    <a href={`https://www.imdb.com/name/${castDetails && castDetails.imdb_id}`} target="_blank"><Imdb className="icon" /></a>
+                    <a 
+                    href={`https://www.imdb.com/name/${castDetails && castDetails.imdb_id}`} 
+                    target="_blank"
+                    rel="noopener noreferrer"><Imdb className="icon" /></a>
                 </div>
             </div>
 

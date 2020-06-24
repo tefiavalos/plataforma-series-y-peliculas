@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import useFetch from '../hooks/useFetch';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Card from './Card'
-import { ArrowRight } from "@styled-icons/feather/ArrowRight"
-import { ArrowLeft } from "@styled-icons/feather/ArrowLeft"
+import Pagination from './Pagination';
+import API_URL from '../assets/constants';
+import notAvailable from '../assets/img-not-available.png'
 
 const SearchSectionStyled = styled.article`
 display:flex;
@@ -84,47 +85,19 @@ justify-content: space-around;
 const SearchSection = () => {
     const params = useParams()
     const history = useHistory()
-    console.log(params, "Params")
     let [page, setPage] = useState(1)
     const busqueda = useFetch(`
-    https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${params.busqueda}&page=${page}&include_adult=true`)
-    console.log(busqueda)
+    ${API_URL}search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${params.busqueda}&page=${page}&include_adult=true`)
 
 
-    const cacapis = () => {
-        let paginacion = []
-        for (let i = 1; i <= busqueda.total_pages; i++) {
-            paginacion.push(i)
-        }
-        return paginacion
-    }
-    console.log(busqueda && busqueda.total_pages)
-    const handleClick = (e) => {
-        setPage(Number(e.target.value))
-        history.push(`/search/${params.busqueda}/page/${Number(e.target.value)}`)
-
-    }
-
-    const handleClickArrowRight = () => {
-        setPage(Number(page + 1))
-        history.push(`/search/${params.busqueda}/page/${page + 1}`)
-    }
-
-    const handleClickArrowLeft = () => {
-        setPage(Number(page - 1))
-        history.push(`/search/${params.busqueda}/page/${page - 1}`)
-    }
-    //tengo que apretar dos veces para que cambie
-
-    console.log(page)
-
-    const paginas = busqueda && busqueda.total_pages && cacapis();
     return (
         <SearchSectionStyled>
             {busqueda && busqueda.results.map((result) => {
                 return (
                     <Card
-                        img={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
+                        img={result.poster_path !== undefined && result.poster_path !== null ?
+                            `https://image.tmdb.org/t/p/w500${result.poster_path}` :
+                            `${notAvailable}`}
                         name={result.title ? result.title : result.original_name}
                         media={result.media_type}
                         id={result.id}>
@@ -132,20 +105,14 @@ const SearchSection = () => {
                 )
 
             })}
-            <div className="button-section">
-                <ArrowLeft onClick={handleClickArrowLeft} className="icon"></ArrowLeft>
-                {paginas && paginas.map((pag, i) => {
-                    if (i < 5) {
-                        return (
-                            <button value={pag} onClick={handleClick}>{pag}</button>
-                        )
-                    }
-                })}
-
-                {paginas && paginas.length > 5 && <button>...</button>}
-                {paginas && paginas.length > 5 && <button value={paginas && paginas.length} onClick={handleClick}>{paginas.length}</button>}
-                <ArrowRight onClick={handleClickArrowRight} value={paginas && paginas.length} className="icon"></ArrowRight>
-            </div>
+            <Pagination
+                sectionPagination={busqueda}
+                params={params}
+                page={page}
+                setPage={setPage}
+                history={history}
+                variableRuteo={"busqueda"}>
+            </Pagination>
         </SearchSectionStyled>
     )
 

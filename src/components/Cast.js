@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Card from './Card'
-import { Link, useParams } from 'react-router-dom';
-
+import Card from './Card';
+import notAvailable from '../assets/img-not-available.png'
 
 const CastStyled = styled.article`
 display:flex;
@@ -12,19 +11,21 @@ justify-content: space-around;
 
 const Cast = (credits) => {
 
-    const params = useParams()
-    console.log(params)
     return (
 
         <CastStyled>
             {credits && credits.credits && credits.credits.cast.map((credit) => {
                 return (
                     <Card
-                        img={`https://image.tmdb.org/t/p/w500${credit.profile_path}`}
+                        img={credit.profile_path !== undefined && credit.profile_path !== null ?
+                            `https://image.tmdb.org/t/p/w500${credit.profile_path}` :
+                            `${notAvailable}`
+                        }
                         name={credit.name}
                         character={credit.character}
                         media={"person"}
                         id={credit.id}
+                        key={credit.id}
                     >
                     </Card>
                 )

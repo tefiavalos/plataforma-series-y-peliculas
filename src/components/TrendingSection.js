@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import CardSection from './CardSection'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ArrowRight } from "@styled-icons/feather/ArrowRight"
 
 const TrendingSectionStyled = styled.section`
-.title{
+.title {
     display:flex;
     width: 30%;
     margin-top: 30px;
-    h3{
+    h3 {
         font-size: 32px;
         font-weight: 300;
         margin: 15px 15px 0;
     }
-    .link{
+    .link {
         text-decoration: none;  
         margin: 0; 
         .icon{
@@ -26,17 +25,17 @@ const TrendingSectionStyled = styled.section`
     }
 }
 @media(max-width: 910px){
-    .title{
+    .title {
     width: 80%;
     margin-top: 15px;
     justify-content: center;
     align-items: center;
-    h3{
+    h3 {
         font-size: 15px;
         margin: 5px 5px 0;
     }
-    .link{
-        .icon{
+    .link {
+        .icon {
             width: 15px;
             margin-top: 5px;
         }

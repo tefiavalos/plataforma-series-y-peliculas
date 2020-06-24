@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Details from './Details';
 import { Imdb } from "@styled-icons/fa-brands/Imdb";
 import { FacebookSquare } from "@styled-icons/fa-brands/FacebookSquare";
 import { Twitter } from "@styled-icons/fa-brands/Twitter";
 import { Instagram } from "@styled-icons/fa-brands/Instagram";
-import { LinkIcon } from "@styled-icons/fa-solid/Link";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-
+import API_URL from '../assets/constants';
 
 const OverviewStyled = styled.div`
 
@@ -93,27 +91,27 @@ h3{
 
 const Overview = ({ released, name, overview, seasons, episodes, runtime, genres, production,
     media, runtimemovies, budget, revenue, img, vote }) => {
+
     const params = useParams();
-    console.log(params)
-    const externalLink = useFetch(`https://api.themoviedb.org/3/${params.media}/${params.id}/external_ids?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
-    console.log(externalLink)
+    const externalLink = useFetch(`
+    ${API_URL}${params.media}/${params.id}/external_ids?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`)
     const [value, setValue] = React.useState(2.5);
 
     return (
         <>
             <OverviewStyled>
-
                 <div className="container-info">
-                    <img src={`https://image.tmdb.org/t/p/w500${img}`} />
+                    <img 
+                    src={`https://image.tmdb.org/t/p/w500${img}`} 
+                    alt={`${name}`}/>
                     <div className="info">
-                        {media == "tv" ?
+                        {media === "tv" ?
                             <>
                                 <h3>{name}</h3>
                                 <div>
                                     <Box component="fieldset" mb={3} borderColor="transparent">
                                         <Rating name="half-rating-read" value={vote / 2} precision={0.5} readOnly />
                                     </Box>
-
                                 </div>
                                 <p>{overview}</p>
                                 <p>Seasons: {seasons}</p>
@@ -122,7 +120,7 @@ const Overview = ({ released, name, overview, seasons, episodes, runtime, genres
                                 <p>Genres:
                         {genres && genres.map((genre, i) => {
                                     return (
-                                        <span> {genre.name} </span>
+                                        <span key={i}> {genre.name} </span>
                                     )
                                 }
                                 )
@@ -131,16 +129,39 @@ const Overview = ({ released, name, overview, seasons, episodes, runtime, genres
                                 <p>Pruduction:
                         {production && production.map((production, i) => {
                                     return (
-                                        <span> {production.name} </span>
+                                        <span key={i}> {production.name} </span>
                                     )
                                 })}</p>
 
                                 <div className="container-icons">
                                     <>
-                                        {externalLink && 'imdb_id' && <a href={`https://www.imdb.com/title/${externalLink.imdb_id}`} target="_blank"><Imdb className="icon" /></a>}
-                                        {externalLink && 'facebook_id' && <a href={`https://www.facebook.com/${externalLink.facebook_id}`} target="_blank"><FacebookSquare className="icon" /></a>}
-                                        {externalLink && 'twitter_id' && <a href={`https://www.twitter.com/${externalLink.twitter_id}`} target="_blank"><Twitter className="icon" /></a>}
-                                        {externalLink && 'instagram_id' && <a href={`https://www.instagram.com/${externalLink.instagram_id}`} target="_blank"><Instagram className="icon" /></a>}
+                                        {externalLink && 'imdb_id' &&
+                                            <a
+                                                href={`https://www.imdb.com/title/${externalLink.imdb_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <Imdb className="icon" />
+                                            </a>}
+                                        {externalLink && 'facebook_id' &&
+                                            <a
+                                                href={`https://www.facebook.com/${externalLink.facebook_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <FacebookSquare className="icon" /></a>}
+                                        {externalLink && 'twitter_id' &&
+                                            <a
+                                                href={`https://www.twitter.com/${externalLink.twitter_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <Twitter className="icon" />
+                                            </a>}
+                                        {externalLink && 'instagram_id' &&
+                                            <a
+                                                href={`https://www.instagram.com/${externalLink.instagram_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <Instagram className="icon" />
+                                            </a>}
                                     </>
                                 </div>
                             </>
@@ -167,30 +188,48 @@ const Overview = ({ released, name, overview, seasons, episodes, runtime, genres
                                 <p>Pruduction:
                         {production && production.map((production, i) => {
                                     return (
-                                        <span> {production.name} </span>
+                                        <span key={i}> {production.name} </span>
                                     )
                                 })}</p>
                                 <div className="container-icons">
                                     <>
-                                        {externalLink && 'imdb_id' && <a href={`https://www.imdb.com/title/${externalLink.imdb_id}`} target="_blank"><Imdb className="icon" /></a>}
-                                        {externalLink && 'facebook_id' && <a href={`https://www.facebook.com/${externalLink.facebook_id}`} target="_blank"><FacebookSquare className="icon" /></a>}
-                                        {externalLink && 'twitter_id' && <a href={`https://www.twitter.com/${externalLink.twitter_id}`} target="_blank"><Twitter className="icon" /></a>}
-                                        {externalLink && 'instagram_id' && <a href={`https://www.instagram.com/${externalLink.instagram_id}`} target="_blank"><Instagram className="icon" /></a>}
+                                        {externalLink && 'imdb_id' &&
+                                            <a
+                                                href={`https://www.imdb.com/title/${externalLink.imdb_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <Imdb className="icon" />
+                                            </a>}
+                                        {externalLink && 'facebook_id' &&
+                                            <a
+                                                href={`https://www.facebook.com/${externalLink.facebook_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <FacebookSquare className="icon" />
+                                            </a>}
+                                        {externalLink && 'twitter_id' &&
+                                            <a
+                                                href={`https://www.twitter.com/${externalLink.twitter_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <Twitter className="icon" />
+                                            </a>}
+                                        {externalLink && 'instagram_id' &&
+                                            <a
+                                                href={`https://www.instagram.com/${externalLink.instagram_id}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer">
+                                                <Instagram className="icon" />
+                                            </a>}
                                     </>
                                 </div>
-                            </>}
-
+                            </>
+                        }
                     </div>
                 </div>
                 <div>
-
                 </div>
-
-
             </OverviewStyled>
-
-
-
         </>
     )
 }
